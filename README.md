@@ -129,6 +129,15 @@ From the runs on 26 November 2026 against a UK store whose own product data we c
 - Supply is thin for retail: of 25 Providers listed for `LIVE_SHELF_PRICE_GENERAL`, two returned a price for this store; the rest failed or had no record. When no second opinion exists the guard says so.
 - Answers take 5–60 s; a full decision costs $0.08–0.12 on testnet prices.
 - Return-policy answers are not reliable enough to gate a purchase, so they are shown as hints.
+- **Same question, different answers.** Asked the same stock question 6 times within 20 seconds for a sold-out variant (Pi 5 1GB), one Provider answered true, false, true, false, null, false. Agreement between two Providers can happen by chance, so before trusting a Provider for stock, run `bin/consistency.mjs` against it (below). Report with signal hashes: https://github.com/telegraphprotocol/bounties/issues (stock consistency, ChainSight).
+
+### Check a stock Provider before you rely on it
+
+```bash
+TELEGRAPH_API_KEY=anjoman_... node bin/consistency.mjs <minerId> 'https://thepihut.com/products/raspberry-pi-5?variant=55037260890497' 3 SC2162
+```
+
+It reads the variant's availability from the store's own Shopify data, asks the pinned Provider the same `SKU_IN_STOCK_GENERAL` question N times (by URL, then by SKU), and prints one JSON line per answer with its signal hash plus a summary `{agree, disagree, none}`. Cost: about $0.01 per ask on testnet.
 
 ## Tests
 
@@ -151,6 +160,7 @@ or unless READY · client refuses to spend past its cap · refused payment recor
 - `src/guard.mjs`: evidence gathering, second opinions, decision rules, approval
 - `src/report.mjs`: Markdown report
 - `bin/guard.mjs`, `bin/heartbeat.mjs`: CLIs
+- `bin/consistency.mjs`: repeat-consistency check of one stock Provider against the store's own data
 - `web/server.mjs`: public demo (no dependencies)
 
 ## License
