@@ -1,0 +1,10 @@
+{
+  "product": "Raspberry Pi 5 8GB",
+  "url": "https://thepihut.com/products/raspberry-pi-5?variant=42531604955331",
+  "maxPrice": 180,
+  "currency": "GBP",
+  "everyMinutes": 180,
+  "freshMinutes": 170,
+  "dailyBudgetUsd": 0.36,
+  "perCheckCapUsd": 0.15
+}

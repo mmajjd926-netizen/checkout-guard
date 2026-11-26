@@ -1,0 +1,18 @@
+{
+  "spentToday": 0.09,
+  "day": "2026-11-26",
+  "last": {
+    "decision": "WAIT",
+    "finished_at": "2026-11-26T14:40:12.763Z",
+    "summary": "Not yet: No Provider returned a price for this product and store. Providers disagree on stock: in stock per TxLens; out of stock per ChainSight — Universal Intelligence & Data Oracle.",
+    "spent_usd": 0.09
+  },
+  "history": [
+    {
+      "decision": "WAIT",
+      "finished_at": "2026-11-26T14:40:12.763Z",
+      "summary": "Not yet: No Provider returned a price for this product and store. Providers disagree on stock: in stock per TxLens; out of stock per ChainSight — Universal Intelligence & Data Oracle.",
+      "spent_usd": 0.09
+    }
+  ]
+}
