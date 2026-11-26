@@ -13,7 +13,7 @@ Every fact in a decision links to the Telegraph Provider that answered, what it 
 
 Built for Telegraph Season II: **Consumer Automation** (route 2, verified price-and-stock purchase) and **Personal Agent** (route 1, a heartbeat with a wallet budget, logging and limits). This is a hackathon entry with a prize incentive.
 
-**Live demo:** https://mmajjd926-netizen.github.io/checkout-guard/ (forwards to the running instance; Telegraph testnet, test USDC)
+**Live demo:** https://mmajjd926-netizen.github.io/checkout-guard/ (forwards to the running instance; Telegraph testnet, test USDC) · **Video (3 min):** https://mmajjd926-netizen.github.io/checkout-guard/demo.mp4
 
 ## What one decision looks like
 

@@ -1,0 +1,10 @@
+{
+  "product": "Raspberry Pi Pico 2 (without headers)",
+  "url": "https://thepihut.com/products/raspberry-pi-pico-2?variant=54063366668673",
+  "maxPrice": 6,
+  "currency": "GBP",
+  "everyMinutes": 0.1,
+  "freshMinutes": 60,
+  "dailyBudgetUsd": 0.5,
+  "perCheckCapUsd": 0.15
+}
