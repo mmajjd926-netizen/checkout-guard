@@ -1,0 +1,17 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Checkout Guard: live demo</title>
+<meta name="description" content="A purchase agent that buys price, stock and URL-safety evidence through Telegraph and only asks to check out when the evidence holds up.">
+<style>body{font:16px/1.6 system-ui,sans-serif;background:#0d1117;color:#e6edf3;max-width:720px;margin:60px auto;padding:0 18px}a{color:#58a6ff}.mut{color:#8b949e}</style></head>
+<body><h1>Checkout Guard</h1>
+<p>A purchase agent that buys its evidence through Telegraph before it lets you buy anything: BLOCK, WAIT or READY, and READY still needs your approval.</p>
+<p id="s" class="mut">Finding the running demo…</p>
+<p class="mut">Source, tutorial and recorded evidence: <a href="https://github.com/mmajjd926-netizen/checkout-guard">github.com/mmajjd926-netizen/checkout-guard</a> (MIT). Telegraph testnet, test USDC; checkout is simulated.</p>
+<script>
+fetch('demo.json?'+Date.now()).then(r=>r.json()).then(async d=>{
+  const s=document.getElementById('s');
+  for (const u of [d.url, d.fallback]) {
+    try { const r = await fetch(u + '/health', {cache:'no-store'}); if (r.ok) { s.innerHTML='Opening <a href="'+u+'">'+u+'</a>…'; location.replace(u); return; } } catch (e) {}
+  }
+  s.innerHTML='The live demo is restarting. Direct links: <a href="'+d.url+'">'+d.url+'</a> · <a href="'+d.fallback+'">'+d.fallback+'</a>. You can also run it yourself in two commands (see the repository).';
+}).catch(()=>{});
+</script></body></html>

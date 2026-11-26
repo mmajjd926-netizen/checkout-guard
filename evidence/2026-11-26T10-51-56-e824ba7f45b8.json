@@ -1,0 +1,393 @@
+{
+  "app": "checkout-guard",
+  "version": "0.1.0",
+  "order": {
+    "product": "EICAR test file",
+    "url": "http://malware.wicar.org/data/eicar.com",
+    "retailer": "malware.wicar.org",
+    "maxPrice": 5,
+    "currency": "USD"
+  },
+  "started_at": "2026-11-26T10:51:56.531Z",
+  "finished_at": "2026-11-26T10:52:56.541Z",
+  "decision": {
+    "decision": "BLOCK",
+    "summary": "Do not buy: URL flagged as Malicious by 2 source(s).",
+    "checks": [
+      {
+        "id": "url_safety",
+        "status": "block",
+        "detail": "URL flagged as Malicious by 2 source(s).",
+        "sources": [
+          {
+            "purpose": "url_safety",
+            "miner": "LiveCert — Sourced Answers for Agents",
+            "miner_id": "4433",
+            "receipt": "0xb3df1c50da6a1c552c005210e8972c30f9b71779c8f0ba4ca88ab42c6a525be9",
+            "signal_hash": "0x04cf7131825a18eb5903e9f954789211c3e58196dc676a0d6af32d83ffea5281",
+            "cost_usd": 0.02,
+            "error": null
+          }
+        ]
+      },
+      {
+        "id": "price_found",
+        "status": "wait",
+        "detail": "No Provider returned a price for this product and store.",
+        "sources": [
+          {
+            "purpose": "price_ranked",
+            "miner": "MetricWire Live Shelf Price",
+            "miner_id": "1900999010",
+            "receipt": "0xd6c3ac96680a196d3a2adad097b7190c5fe31dc3ae1559d9cd8765c7a50ed39d",
+            "signal_hash": "0xddd3dcfeecd1b6de15036a61a43574cc2f128d5318f1340a07d2ebff9a290556",
+            "cost_usd": 0.01,
+            "error": null
+          }
+        ]
+      },
+      {
+        "id": "in_stock",
+        "status": "wait",
+        "detail": "Provider reports the item out of stock.",
+        "sources": [
+          {
+            "purpose": "stock",
+            "miner": "TxLens",
+            "miner_id": "9002",
+            "receipt": "0xb690be978c2517933a415b8cedaac98e0e029bc0f01bbc8bc125eced7351c46c",
+            "signal_hash": "0x7e32c575d25e12295558ac296cb4843ae4b32c3ee256a8910ddb06a315349818",
+            "cost_usd": 0.02,
+            "error": null
+          }
+        ]
+      },
+      {
+        "id": "returns",
+        "status": "info",
+        "detail": "Return window 0 days (Provider marked it unverified or cited unrelated sources; treat as a hint).",
+        "sources": [
+          {
+            "purpose": "returns",
+            "miner": "TxLens",
+            "miner_id": "9002",
+            "receipt": "0xbc2225fffd6584ab8a52ee34059bcd0374733b89d6495484afddb7fa7197c347",
+            "signal_hash": "0x2ecb73b7884fe0f7b8eb3028067dd93cca8841eee26c37611f6ca547ab13eef9",
+            "cost_usd": 0.03,
+            "error": null
+          }
+        ]
+      }
+    ]
+  },
+  "ledger": {
+    "cap_usd": 0.15,
+    "spent_usd": 0.1,
+    "calls": [
+      {
+        "purpose": "url_safety",
+        "intent": "URL_SAFE_GENERAL",
+        "params": {
+          "url": "http://malware.wicar.org/data/eicar.com"
+        },
+        "pinned_miner": null,
+        "ok": true,
+        "http": 200,
+        "error": null,
+        "miner_id": "4433",
+        "miner": "LiveCert — Sourced Answers for Agents",
+        "delivery": "specialist",
+        "answer": {
+          "url": "http://malware.wicar.org/data/eicar.com",
+          "verdict": "Malicious",
+          "detections": 2,
+          "summary": "Listed: malware.wicar.org is flagged as malicious by 2 of 2 threat sources checked: Cloudflare security DNS, Quad9 threat-blocking DNS."
+        },
+        "field_status": {
+          "url": "ok",
+          "verdict": "ok",
+          "detections": "ok",
+          "summary": "ok"
+        },
+        "warnings": [
+          "Sources returned conflicting information for: checked_at",
+          "Sources returned conflicting information for: confidence",
+          "Sources returned conflicting information for: detections",
+          "Sources returned conflicting information for: checked",
+          "Sources returned conflicting information for: detail",
+          "Sources returned conflicting information for: listed",
+          "Sources returned conflicting information for: source",
+          "Sources returned conflicting information for: url",
+          "Sources returned conflicting information for: ms",
+          "Sources returned conflicting information for: started_at",
+          "Sources returned conflicting information for: result"
+        ],
+        "cost_usd": 0.02,
+        "receipts": [
+          {
+            "miner": "livecert",
+            "amount_uusdc": 10000,
+            "receipt_hash": "0xb3df1c50da6a1c552c005210e8972c30f9b71779c8f0ba4ca88ab42c6a525be9"
+          },
+          {
+            "miner": "a1-preflight",
+            "amount_uusdc": 10000,
+            "receipt_hash": "0x5af9b8154a38e5cc33fd64da1577ea4727d751dd509e8a0ae46b237721b195f0"
+          }
+        ],
+        "signal_hash": "0x04cf7131825a18eb5903e9f954789211c3e58196dc676a0d6af32d83ffea5281",
+        "started_at": "2026-11-26T10:51:56.531Z",
+        "latency_ms": 24929
+      },
+      {
+        "purpose": "returns",
+        "intent": "RETURN_POLICY_VERIFY_GENERAL",
+        "params": {
+          "retailer": "malware.wicar.org"
+        },
+        "pinned_miner": null,
+        "ok": true,
+        "http": 200,
+        "error": null,
+        "miner_id": "9002",
+        "miner": "TxLens",
+        "delivery": "specialist",
+        "answer": {
+          "retailer": "malware.wicar.org",
+          "return_window_days": 0,
+          "conditions": [
+            "Returns are not accepted."
+          ],
+          "verified": false,
+          "sources": [
+            "malware.wicar.org"
+          ]
+        },
+        "field_status": {
+          "retailer": "ok",
+          "return_window_days": "ok",
+          "conditions": "ok",
+          "verified": "ok",
+          "sources": "ok"
+        },
+        "warnings": [
+          "Sources returned conflicting information for: confidence",
+          "Sources returned conflicting information for: reason",
+          "Sources returned conflicting information for: summary",
+          "Sources returned conflicting information for: label"
+        ],
+        "cost_usd": 0.03,
+        "receipts": [
+          {
+            "miner": "txlens",
+            "amount_uusdc": 10000,
+            "receipt_hash": "0xbc2225fffd6584ab8a52ee34059bcd0374733b89d6495484afddb7fa7197c347"
+          },
+          {
+            "miner": "a1-preflight",
+            "amount_uusdc": 10000,
+            "receipt_hash": "0xb797d80f182dce2c8a4a33376c664f9c282440a99ddb743527b0d3150d7f76e0"
+          },
+          {
+            "miner": "ret-zenodo",
+            "amount_uusdc": 10000,
+            "receipt_hash": "0x07937dba180536cdce96449791984a42f86922e66c6050bd674a6d218fc15952"
+          }
+        ],
+        "signal_hash": "0x2ecb73b7884fe0f7b8eb3028067dd93cca8841eee26c37611f6ca547ab13eef9",
+        "started_at": "2026-11-26T10:51:56.535Z",
+        "latency_ms": 25617
+      },
+      {
+        "purpose": "stock",
+        "intent": "SKU_IN_STOCK_GENERAL",
+        "params": {
+          "sku": "EICAR test file",
+          "retailer": "malware.wicar.org"
+        },
+        "pinned_miner": null,
+        "ok": true,
+        "http": 200,
+        "error": null,
+        "miner_id": "9002",
+        "miner": "TxLens",
+        "delivery": "specialist",
+        "answer": {
+          "sku": "EICAR test file",
+          "retailer": "malware.wicar.org",
+          "in_stock": false,
+          "quantity": null
+        },
+        "field_status": {
+          "sku": "ok",
+          "retailer": "ok",
+          "in_stock": "ok",
+          "quantity": "missing"
+        },
+        "warnings": [
+          "The response does not include: Units available, when stated",
+          "Sources returned conflicting information for: answer"
+        ],
+        "cost_usd": 0.02,
+        "receipts": [
+          {
+            "miner": "txlens",
+            "amount_uusdc": 10000,
+            "receipt_hash": "0xb690be978c2517933a415b8cedaac98e0e029bc0f01bbc8bc125eced7351c46c"
+          },
+          {
+            "miner": "chainsight-oracle",
+            "amount_uusdc": 10000,
+            "receipt_hash": "0x5bb68f622bc45f5aca9c3606333f6d18d97038e1f1a068dc8a5b853281009bb2"
+          }
+        ],
+        "signal_hash": "0x7e32c575d25e12295558ac296cb4843ae4b32c3ee256a8910ddb06a315349818",
+        "started_at": "2026-11-26T10:51:56.534Z",
+        "latency_ms": 30314
+      },
+      {
+        "purpose": "price_ranked",
+        "intent": "LIVE_SHELF_PRICE_GENERAL",
+        "params": {
+          "product": "EICAR test file",
+          "store": "malware.wicar.org"
+        },
+        "pinned_miner": null,
+        "ok": true,
+        "http": 200,
+        "error": null,
+        "miner_id": "1900999010",
+        "miner": "MetricWire Live Shelf Price",
+        "delivery": "specialist",
+        "answer": {
+          "price": null,
+          "currency": null,
+          "product": "EICAR test file",
+          "store": null,
+          "date": null
+        },
+        "field_status": {
+          "price": "missing",
+          "currency": "missing",
+          "product": "ok",
+          "store": "missing",
+          "date": "missing"
+        },
+        "warnings": [
+          "The response does not include: Currency code of the price",
+          "The response does not include: Date the price was observed",
+          "The response does not include: Shelf price of price record {key}, in major currency units (e.g. euros, not cents)",
+          "The response does not include: Store or retailer the price was observed at"
+        ],
+        "cost_usd": 0.01,
+        "receipts": [
+          {
+            "miner": "metricwire-live-shelf-price",
+            "amount_uusdc": 10000,
+            "receipt_hash": "0xd6c3ac96680a196d3a2adad097b7190c5fe31dc3ae1559d9cd8765c7a50ed39d"
+          }
+        ],
+        "signal_hash": "0xddd3dcfeecd1b6de15036a61a43574cc2f128d5318f1340a07d2ebff9a290556",
+        "started_at": "2026-11-26T10:51:56.532Z",
+        "latency_ms": 41096
+      },
+      {
+        "purpose": "price_second",
+        "intent": "LIVE_SHELF_PRICE_GENERAL",
+        "params": {
+          "product": "http://malware.wicar.org/data/eicar.com",
+          "store": "malware.wicar.org"
+        },
+        "pinned_miner": "20260828",
+        "ok": true,
+        "http": 200,
+        "error": null,
+        "miner_id": "20260828",
+        "miner": "PREFLIGHT Infrastructure Signals",
+        "delivery": null,
+        "answer": {
+          "price": null,
+          "currency": null,
+          "product": "from malware wicar org",
+          "store": null,
+          "date": null
+        },
+        "field_status": {
+          "price": "missing",
+          "currency": "missing",
+          "product": "ok",
+          "store": "missing",
+          "date": "missing"
+        },
+        "warnings": [],
+        "cost_usd": 0.01,
+        "receipts": [],
+        "signal_hash": "0xd7a8e105841019d8bd83fc2bfce1c8d2039958498c84ff27f6f2ab1b4319f3b7",
+        "started_at": "2026-11-26T10:52:38.973Z",
+        "latency_ms": 7701
+      },
+      {
+        "purpose": "price_second",
+        "intent": "LIVE_SHELF_PRICE_GENERAL",
+        "params": {
+          "product": "http://malware.wicar.org/data/eicar.com",
+          "store": "malware.wicar.org"
+        },
+        "pinned_miner": "9002",
+        "ok": true,
+        "http": 200,
+        "error": null,
+        "miner_id": "9002",
+        "miner": "TxLens",
+        "delivery": null,
+        "answer": {
+          "price": null,
+          "currency": null,
+          "product": "http://malware.wicar.org/data/eicar.com",
+          "store": "malware.wicar.org",
+          "date": null
+        },
+        "field_status": {
+          "price": "missing",
+          "currency": "missing",
+          "product": "ok",
+          "store": "ok",
+          "date": "missing"
+        },
+        "warnings": [],
+        "cost_usd": 0.01,
+        "receipts": [],
+        "signal_hash": "0x791f84d0d3447337aa831543e31f76779340565f95e2151f2f22fef07b81c858",
+        "started_at": "2026-11-26T10:52:46.674Z",
+        "latency_ms": 6153
+      },
+      {
+        "purpose": "price_second",
+        "intent": "LIVE_SHELF_PRICE_GENERAL",
+        "params": {
+          "product": "http://malware.wicar.org/data/eicar.com",
+          "store": "malware.wicar.org"
+        },
+        "pinned_miner": "7310991",
+        "ok": false,
+        "http": 500,
+        "error": "HTTP 500: miner error unavailable [product_not_resolved]: No verified shelf price is available for this exact request (product_not_resolved). Open Prices contains dated contributed observations; no other product or retailer price is substituted.",
+        "miner_id": null,
+        "miner": null,
+        "delivery": null,
+        "answer": null,
+        "field_status": null,
+        "warnings": [],
+        "cost_usd": 0,
+        "receipts": [],
+        "signal_hash": null,
+        "started_at": "2026-11-26T10:52:52.827Z",
+        "latency_ms": 3714
+      }
+    ],
+    "paid_calls": 6,
+    "failed_calls": 1
+  },
+  "id": "2026-11-26T10-51-56-e824ba7f45b8",
+  "source": "web demo"
+}

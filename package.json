@@ -1,0 +1,15 @@
+{
+  "name": "checkout-guard",
+  "version": "0.1.0",
+  "description": "A purchase agent that buys price, stock and URL-safety evidence through Telegraph and only asks to check out when the evidence holds up.",
+  "type": "module",
+  "license": "MIT",
+  "engines": { "node": ">=20" },
+  "bin": { "checkout-guard": "bin/guard.mjs", "checkout-guard-heartbeat": "bin/heartbeat.mjs" },
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "check": "node bin/guard.mjs",
+    "heartbeat": "node bin/heartbeat.mjs",
+    "serve": "node web/server.mjs"
+  }
+}

@@ -1,0 +1,456 @@
+{
+  "app": "checkout-guard",
+  "version": "0.1.0",
+  "order": {
+    "product": "Raspberry Pi Pico 2 (without headers)",
+    "url": "https://thepihut.com/products/raspberry-pi-pico-2?variant=54063366668673",
+    "retailer": "thepihut.com",
+    "maxPrice": 6,
+    "currency": "GBP"
+  },
+  "started_at": "2026-11-26T10:55:29.042Z",
+  "finished_at": "2026-11-26T10:56:49.741Z",
+  "decision": {
+    "decision": "READY",
+    "summary": "All checks passed. Waiting for your explicit approval; nothing has been bought.",
+    "checks": [
+      {
+        "id": "url_safety",
+        "status": "pass",
+        "detail": "URL not listed by threat sources (0 detections).",
+        "sources": [
+          {
+            "purpose": "url_safety",
+            "miner": "LiveCert — Sourced Answers for Agents",
+            "miner_id": "4433",
+            "receipt": "0x0352d29b3c266c94f28507b56dd9d6830ec2dd106a94fe4bac9b62d2289f76af",
+            "signal_hash": "0x1d9abe6fced444623d0d8632ac09a656021689630bec4980ba2b466af414a5aa",
+            "cost_usd": 0.02,
+            "error": null
+          }
+        ]
+      },
+      {
+        "id": "price_agreement",
+        "status": "pass",
+        "detail": "Two independent Providers agree within 0.0 %: GBP 4.80 and GBP 4.80.",
+        "sources": [
+          {
+            "purpose": "price_ranked",
+            "miner": "MetricWire Live Shelf Price",
+            "miner_id": "1900999010",
+            "receipt": "0x4f9c8d7bb7a89ef12745f53031eae4194d1c549e8b36563ec39d8d147d3a1d27",
+            "signal_hash": "0xdeefe6987139963850a3437bda72d6e2c902ebd9fb28e76c6ebb24dab6033181",
+            "cost_usd": 0.02,
+            "error": null
+          },
+          {
+            "purpose": "price_second",
+            "miner": "PREFLIGHT Infrastructure Signals",
+            "miner_id": "20260828",
+            "receipt": null,
+            "signal_hash": "0x733f5437333c431cfbcf16af769fb4ce19484327557efbcb085bd7bb17a742af",
+            "cost_usd": 0.01,
+            "error": null
+          }
+        ]
+      },
+      {
+        "id": "price_fresh",
+        "status": "pass",
+        "detail": "Price observed 2026-11-26 (within 48 h).",
+        "sources": [
+          {
+            "purpose": "price_ranked",
+            "miner": "MetricWire Live Shelf Price",
+            "miner_id": "1900999010",
+            "receipt": "0x4f9c8d7bb7a89ef12745f53031eae4194d1c549e8b36563ec39d8d147d3a1d27",
+            "signal_hash": "0xdeefe6987139963850a3437bda72d6e2c902ebd9fb28e76c6ebb24dab6033181",
+            "cost_usd": 0.02,
+            "error": null
+          },
+          {
+            "purpose": "price_second",
+            "miner": "PREFLIGHT Infrastructure Signals",
+            "miner_id": "20260828",
+            "receipt": null,
+            "signal_hash": "0x733f5437333c431cfbcf16af769fb4ce19484327557efbcb085bd7bb17a742af",
+            "cost_usd": 0.01,
+            "error": null
+          }
+        ]
+      },
+      {
+        "id": "within_budget",
+        "status": "pass",
+        "detail": "Price GBP 4.80 is within your limit of GBP 6.00.",
+        "sources": [
+          {
+            "purpose": "price_ranked",
+            "miner": "MetricWire Live Shelf Price",
+            "miner_id": "1900999010",
+            "receipt": "0x4f9c8d7bb7a89ef12745f53031eae4194d1c549e8b36563ec39d8d147d3a1d27",
+            "signal_hash": "0xdeefe6987139963850a3437bda72d6e2c902ebd9fb28e76c6ebb24dab6033181",
+            "cost_usd": 0.02,
+            "error": null
+          },
+          {
+            "purpose": "price_second",
+            "miner": "PREFLIGHT Infrastructure Signals",
+            "miner_id": "20260828",
+            "receipt": null,
+            "signal_hash": "0x733f5437333c431cfbcf16af769fb4ce19484327557efbcb085bd7bb17a742af",
+            "cost_usd": 0.01,
+            "error": null
+          }
+        ]
+      },
+      {
+        "id": "in_stock",
+        "status": "pass",
+        "detail": "Provider reports it in stock (PREFLIGHT Infrastructure Signals); no second opinion was available.",
+        "sources": [
+          {
+            "purpose": "stock",
+            "miner": null,
+            "miner_id": null,
+            "receipt": null,
+            "signal_hash": null,
+            "cost_usd": 0,
+            "error": "HTTP 504: <!DOCTYPE html>\n<!--[if lt IE 7]> <html class=\"no-js ie6 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if IE 7]>    <html class=\"no-js ie7 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if IE 8]>    <html class=\"no-js ie8 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if gt IE 8]><!--> <html class=\"no-js\" lang=\"en-US\"> <!"
+          },
+          {
+            "purpose": "stock_second",
+            "miner": "PREFLIGHT Infrastructure Signals",
+            "miner_id": "20260828",
+            "receipt": null,
+            "signal_hash": "0x372bd17c3d5c60b007e31e977deeaf3ed15b8889aacc26e41dcb254bd2caee7f",
+            "cost_usd": 0.01,
+            "error": null
+          }
+        ]
+      },
+      {
+        "id": "returns",
+        "status": "info",
+        "detail": "Return window 30 days (Provider marked it unverified or cited unrelated sources; treat as a hint).",
+        "sources": [
+          {
+            "purpose": "returns",
+            "miner": "TxLens",
+            "miner_id": "9002",
+            "receipt": "0x0ed39da466da90ee67ab9504de038c5d5b00bd22f46a43586e575da113b04139",
+            "signal_hash": "0xc0ef4ad193c87cb5870e88dacc94756f2325b7e31638b23a02455656f1a33240",
+            "cost_usd": 0.02,
+            "error": null
+          }
+        ]
+      }
+    ]
+  },
+  "ledger": {
+    "cap_usd": 0.15,
+    "spent_usd": 0.08,
+    "calls": [
+      {
+        "purpose": "returns",
+        "intent": "RETURN_POLICY_VERIFY_GENERAL",
+        "params": {
+          "retailer": "thepihut.com"
+        },
+        "pinned_miner": null,
+        "ok": true,
+        "http": 200,
+        "error": null,
+        "miner_id": "9002",
+        "miner": "TxLens",
+        "delivery": "specialist",
+        "answer": {
+          "retailer": "thepihut.com",
+          "return_window_days": 30,
+          "conditions": [
+            "The product must be unused, in its original packaging, and with all accessories and documentation intact"
+          ],
+          "verified": false,
+          "sources": [
+            "thepihut.com"
+          ]
+        },
+        "field_status": {
+          "retailer": "ok",
+          "return_window_days": "ok",
+          "conditions": "ok",
+          "verified": "ok",
+          "sources": "ok"
+        },
+        "warnings": [
+          "Sources returned conflicting information for: label"
+        ],
+        "cost_usd": 0.02,
+        "receipts": [
+          {
+            "miner": "txlens",
+            "amount_uusdc": 10000,
+            "receipt_hash": "0x0ed39da466da90ee67ab9504de038c5d5b00bd22f46a43586e575da113b04139"
+          },
+          {
+            "miner": "ret-zenodo",
+            "amount_uusdc": 10000,
+            "receipt_hash": "0x5dff837b5d75f7e11e915224285f457fb7c5afeb1111f73df04899a455344ce6"
+          }
+        ],
+        "signal_hash": "0xc0ef4ad193c87cb5870e88dacc94756f2325b7e31638b23a02455656f1a33240",
+        "started_at": "2026-11-26T10:55:29.066Z",
+        "latency_ms": 29683
+      },
+      {
+        "purpose": "url_safety",
+        "intent": "URL_SAFE_GENERAL",
+        "params": {
+          "url": "https://thepihut.com/products/raspberry-pi-pico-2?variant=54063366668673"
+        },
+        "pinned_miner": null,
+        "ok": true,
+        "http": 200,
+        "error": null,
+        "miner_id": "4433",
+        "miner": "LiveCert — Sourced Answers for Agents",
+        "delivery": "specialist",
+        "answer": {
+          "url": "https://thepihut.com/products/raspberry-pi-pico-2?variant=54063366668673",
+          "verdict": "Safe",
+          "detections": 0,
+          "summary": "Not listed: thepihut.com is on none of the 2 threat sources that answered: Cloudflare security DNS, Quad9 threat-blocking DNS."
+        },
+        "field_status": {
+          "url": "ok",
+          "verdict": "ok",
+          "detections": "ok",
+          "summary": "ok"
+        },
+        "warnings": [
+          "Sources returned conflicting information for: checked_at",
+          "Sources returned conflicting information for: confidence",
+          "Sources returned conflicting information for: checked",
+          "Sources returned conflicting information for: detail",
+          "Sources returned conflicting information for: source",
+          "Sources returned conflicting information for: url",
+          "Sources returned conflicting information for: method",
+          "Sources returned conflicting information for: ms",
+          "Sources returned conflicting information for: started_at",
+          "Sources returned conflicting information for: result",
+          "Some additional information was omitted from this response."
+        ],
+        "cost_usd": 0.02,
+        "receipts": [
+          {
+            "miner": "livecert",
+            "amount_uusdc": 10000,
+            "receipt_hash": "0x0352d29b3c266c94f28507b56dd9d6830ec2dd106a94fe4bac9b62d2289f76af"
+          },
+          {
+            "miner": "a1-preflight",
+            "amount_uusdc": 10000,
+            "receipt_hash": "0x0ace4fb036a656897b2833a1cb374a54d18d7a29f4c067206a320e542c94db40"
+          }
+        ],
+        "signal_hash": "0x1d9abe6fced444623d0d8632ac09a656021689630bec4980ba2b466af414a5aa",
+        "started_at": "2026-11-26T10:55:29.043Z",
+        "latency_ms": 50265
+      },
+      {
+        "purpose": "price_ranked",
+        "intent": "LIVE_SHELF_PRICE_GENERAL",
+        "params": {
+          "product": "Raspberry Pi Pico 2 (without headers)",
+          "store": "thepihut.com"
+        },
+        "pinned_miner": null,
+        "ok": true,
+        "http": 200,
+        "error": null,
+        "miner_id": "1900999010",
+        "miner": "MetricWire Live Shelf Price",
+        "delivery": "specialist",
+        "answer": {
+          "price": 4.8,
+          "currency": "GBP",
+          "product": "Raspberry Pi Pico 2 (without headers)",
+          "store": "thepihut.com",
+          "date": "2026-11-26"
+        },
+        "field_status": {
+          "price": "ok",
+          "currency": "ok",
+          "product": "ok",
+          "store": "ok",
+          "date": "ok"
+        },
+        "warnings": [
+          "Sources returned conflicting information for: price",
+          "Sources returned conflicting information for: product",
+          "Sources returned conflicting information for: reason",
+          "Sources returned conflicting information for: summary",
+          "Sources returned conflicting information for: sku",
+          "Sources returned conflicting information for: title",
+          "Sources returned conflicting information for: url"
+        ],
+        "cost_usd": 0.02,
+        "receipts": [
+          {
+            "miner": "metricwire-live-shelf-price",
+            "amount_uusdc": 10000,
+            "receipt_hash": "0x4f9c8d7bb7a89ef12745f53031eae4194d1c549e8b36563ec39d8d147d3a1d27"
+          },
+          {
+            "miner": "a1-preflight",
+            "amount_uusdc": 10000,
+            "receipt_hash": "0x90ba282ae4d46ea47d4391b0b44480e3e1102d83de68e98408c5db78d0a0690a"
+          }
+        ],
+        "signal_hash": "0xdeefe6987139963850a3437bda72d6e2c902ebd9fb28e76c6ebb24dab6033181",
+        "started_at": "2026-11-26T10:55:29.062Z",
+        "latency_ms": 55388
+      },
+      {
+        "purpose": "stock",
+        "intent": "SKU_IN_STOCK_GENERAL",
+        "params": {
+          "sku": "Raspberry Pi Pico 2 (without headers)",
+          "retailer": "thepihut.com"
+        },
+        "pinned_miner": null,
+        "ok": false,
+        "http": 504,
+        "error": "HTTP 504: <!DOCTYPE html>\n<!--[if lt IE 7]> <html class=\"no-js ie6 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if IE 7]>    <html class=\"no-js ie7 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if IE 8]>    <html class=\"no-js ie8 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if gt IE 8]><!--> <html class=\"no-js\" lang=\"en-US\"> <!",
+        "miner_id": null,
+        "miner": null,
+        "delivery": null,
+        "answer": null,
+        "field_status": null,
+        "warnings": [],
+        "cost_usd": 0,
+        "receipts": [],
+        "signal_hash": null,
+        "started_at": "2026-11-26T10:55:29.064Z",
+        "latency_ms": 60223
+      },
+      {
+        "purpose": "price_second",
+        "intent": "LIVE_SHELF_PRICE_GENERAL",
+        "params": {
+          "product": "https://thepihut.com/products/raspberry-pi-pico-2?variant=54063366668673",
+          "store": "thepihut.com"
+        },
+        "pinned_miner": "20260828",
+        "ok": true,
+        "http": 200,
+        "error": null,
+        "miner_id": "20260828",
+        "miner": "PREFLIGHT Infrastructure Signals",
+        "delivery": null,
+        "answer": {
+          "price": 4.8,
+          "currency": "GBP",
+          "product": "Raspberry Pi Pico 2",
+          "store": "thepihut.com",
+          "date": "2026-11-26"
+        },
+        "field_status": {
+          "price": "ok",
+          "currency": "ok",
+          "product": "ok",
+          "store": "ok",
+          "date": "ok"
+        },
+        "warnings": [],
+        "cost_usd": 0.01,
+        "receipts": [],
+        "signal_hash": "0x733f5437333c431cfbcf16af769fb4ce19484327557efbcb085bd7bb17a742af",
+        "started_at": "2026-11-26T10:56:30.660Z",
+        "latency_ms": 9750
+      },
+      {
+        "purpose": "stock_second",
+        "intent": "SKU_IN_STOCK_GENERAL",
+        "params": {
+          "sku": "https://thepihut.com/products/raspberry-pi-pico-2?variant=54063366668673",
+          "retailer": "thepihut.com"
+        },
+        "pinned_miner": "302",
+        "ok": false,
+        "http": 503,
+        "error": "HTTP 503: could not route this question now, try again later",
+        "miner_id": null,
+        "miner": null,
+        "delivery": null,
+        "answer": null,
+        "field_status": null,
+        "warnings": [],
+        "cost_usd": 0,
+        "receipts": [],
+        "signal_hash": null,
+        "started_at": "2026-11-26T10:56:41.121Z",
+        "latency_ms": 3086
+      },
+      {
+        "purpose": "stock_second",
+        "intent": "SKU_IN_STOCK_GENERAL",
+        "params": {
+          "sku": "https://thepihut.com/products/raspberry-pi-pico-2?variant=54063366668673",
+          "retailer": "thepihut.com"
+        },
+        "pinned_miner": "20260828",
+        "ok": true,
+        "http": 200,
+        "error": null,
+        "miner_id": "20260828",
+        "miner": "PREFLIGHT Infrastructure Signals",
+        "delivery": null,
+        "answer": {
+          "sku": "SC1631",
+          "retailer": "thepihut.com",
+          "in_stock": true,
+          "quantity": null
+        },
+        "field_status": {
+          "sku": "ok",
+          "retailer": "ok",
+          "in_stock": "ok",
+          "quantity": "rejected"
+        },
+        "warnings": [],
+        "cost_usd": 0.01,
+        "receipts": [],
+        "signal_hash": "0x372bd17c3d5c60b007e31e977deeaf3ed15b8889aacc26e41dcb254bd2caee7f",
+        "started_at": "2026-11-26T10:56:44.207Z",
+        "latency_ms": 5531
+      }
+    ],
+    "paid_calls": 5,
+    "failed_calls": 2
+  },
+  "id": "2026-11-26T10-55-29-15d313f5d474",
+  "source": "web demo",
+  "approval": {
+    "ok": true,
+    "simulated": true,
+    "note": "Checkout is simulated: this record is what a real checkout integration would receive. No payment to the retailer was made.",
+    "order": {
+      "product": "Raspberry Pi Pico 2 (without headers)",
+      "url": "https://thepihut.com/products/raspberry-pi-pico-2?variant=54063366668673",
+      "max_price": 6,
+      "currency": "GBP"
+    },
+    "approved_by": "demo reviewer",
+    "approved_at": "2026-11-26T10:57:01.316Z",
+    "evidence_receipts": [
+      "0x0ed39da466da90ee67ab9504de038c5d5b00bd22f46a43586e575da113b04139",
+      "0x5dff837b5d75f7e11e915224285f457fb7c5afeb1111f73df04899a455344ce6",
+      "0x0352d29b3c266c94f28507b56dd9d6830ec2dd106a94fe4bac9b62d2289f76af",
+      "0x0ace4fb036a656897b2833a1cb374a54d18d7a29f4c067206a320e542c94db40",
+      "0x4f9c8d7bb7a89ef12745f53031eae4194d1c549e8b36563ec39d8d147d3a1d27",
+      "0x90ba282ae4d46ea47d4391b0b44480e3e1102d83de68e98408c5db78d0a0690a"
+    ]
+  }
+}
