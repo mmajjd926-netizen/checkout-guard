@@ -44,6 +44,8 @@ Recorded runs from the public demo are in [`evidence/`](evidence/) (JSON with ev
 
 ## How it works
 
+Step-by-step write-up of the four ideas below (pre-call cap, failures as evidence, second opinions, costs): [docs/TUTORIAL.md](docs/TUTORIAL.md).
+
 ```
 your product page + price limit
         │
