@@ -129,7 +129,7 @@ From the runs on 26 November 2026 against a UK store whose own product data we c
 - Supply is thin for retail: of 25 Providers listed for `LIVE_SHELF_PRICE_GENERAL`, two returned a price for this store; the rest failed or had no record. When no second opinion exists the guard says so.
 - Answers take 5–60 s; a full decision costs $0.08–0.12 on testnet prices.
 - Return-policy answers are not reliable enough to gate a purchase, so they are shown as hints.
-- **Same question, different answers.** Asked the same stock question 6 times within 20 seconds for a sold-out variant (Pi 5 1GB), one Provider answered true, false, true, false, null, false. Agreement between two Providers can happen by chance, so before trusting a Provider for stock, run `bin/consistency.mjs` against it (below). Report with signal hashes: https://github.com/telegraphprotocol/bounties/issues (stock consistency, ChainSight).
+- **Same question, different answers.** Asked the same stock question 6 times within 20 seconds for a sold-out variant (Pi 5 1GB), one Provider answered true, false, true, false, null, false. Agreement between two Providers can happen by chance, so before trusting a Provider for stock, run `bin/consistency.mjs` against it (below). Report with signal hashes: https://github.com/telegraphprotocol/bounties/issues/240.
 
 ### Check a stock Provider before you rely on it
 
