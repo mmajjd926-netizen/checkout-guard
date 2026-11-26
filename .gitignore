@@ -7,4 +7,5 @@ web/tunnel_history.log
 examples/*.state.json
 examples/*.log.jsonl
 examples/runs/
+!evidence/heartbeat/*.log.jsonl
 .env

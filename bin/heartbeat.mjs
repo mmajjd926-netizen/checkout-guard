@@ -81,7 +81,8 @@ async function tick() {
   const prev = st.last?.decision;
   st.last = { decision: d, finished_at: run.finished_at, summary: run.decision.summary, spent_usd: run.ledger.spent_usd };
   st.history = [...(st.history || []).slice(-49), st.last];
-  log('decision', { decision: d, previous: prev || null, spent_usd: run.ledger.spent_usd, spent_today: st.spentToday, summary: run.decision.summary });
+  const receipts = run.ledger.calls.filter(c => c.ok).map(c => ({ intent: c.intent, miner_id: c.miner_id, cost_usd: c.cost_usd, receipt: c.receipts?.[0]?.receipt_hash || null, signal_hash: c.signal_hash || null }));
+  log('decision', { decision: d, previous: prev || null, spent_usd: run.ledger.spent_usd, spent_today: st.spentToday, summary: run.decision.summary, paid_calls: receipts.length, failed_calls: failed.length, receipts });
 
   // 4. Alert once when it turns READY. Approval stays a separate, explicit step.
   if (d === 'READY' && prev !== 'READY') await notify(`READY to buy ${cfg.product} (limit ${cfg.currency} ${cfg.maxPrice}). Approve with: node bin/guard.mjs --product "${cfg.product}" --url "${cfg.url}" --max-price ${cfg.maxPrice} --currency ${cfg.currency} --approve "<your name>"`);
