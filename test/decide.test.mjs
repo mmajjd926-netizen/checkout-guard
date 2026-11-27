@@ -138,3 +138,19 @@ test('a refused payment is recorded as a failure, not an answer', async () => {
   const c = await tg.ask('URL_SAFE_GENERAL', { url: 'https://example.com' });
   assert.equal(c.ok, false); assert.match(c.error, /payment refused/); assert.equal(c.cost_usd, 0);
 });
+
+test('return policy quoted from the store: shown as info, READY unchanged', () => {
+  const e = good(); e.returns = call('returns', { returnable: null, return_window_days: 7, window_unit: 'working days', window_counts_from: 'delivery', return_shipping_paid_by: 'customer',
+    evidence: ['…you can do so provided you inform us of your decision within 7 working days of receipt.'], policy_url: 'https://thepihut.com/policies/refund-policy' });
+  const d = decide(order, e, { now: NOW });
+  assert.equal(d.decision, 'READY');
+  const c = d.checks.find(c => c.id === 'returns');
+  assert.equal(c.status, 'info'); assert.match(c.detail, /7 working days \(from delivery, you pay return postage\)/); assert.match(c.detail, /policies\/refund-policy/);
+});
+
+test('a store that takes no change-of-mind returns makes the buyer confirm first', () => {
+  const e = good(); e.returns = call('returns', { returnable: false, return_window_days: null, days_remaining: null,
+    evidence: ['…we are unable to offer any returns or exchanges for any other reasons.'], policy_url: 'https://colourpop.com/policies/refund-policy' });
+  const d = decide(order, e, { now: NOW });
+  assert.equal(d.decision, 'WAIT'); assert.equal(status(d, 'returns'), 'wait');
+});

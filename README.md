@@ -55,7 +55,8 @@ paid Telegraph asks (escrow rail, API key)          rules
   LIVE_SHELF_PRICE_GENERAL  ranked + 2nd Provider ►  two prices within 5 %, else 3rd opinion, else WAIT
                             (pinned, exact URL)      observed ≤ 48 h, under your limit
   SKU_IN_STOCK_GENERAL      ranked + 2nd Provider ►  in stock, conflicts → 3rd opinion or WAIT
-  RETURN_POLICY_VERIFY_GENERAL ──────────────────►  shown as a hint only (quality is weak)
+  RETURN_POLICY_VERIFY_GENERAL  Shelf Truth first ►  window, fees, postage + the quoted store policy;
+                                (quotes the store)   "no change-of-mind returns" → WAIT (buyer confirms)
         │
         ▼
 BLOCK / WAIT / READY  →  explicit approval  →  simulated checkout record (with the receipt hashes)
@@ -123,12 +124,15 @@ From the runs on 26 November 2026 against a UK store whose own product data we c
 | Pi 5 **8GB** price | £168.00 (MetricWire); £43.20 (PREFLIGHT, priced the 1GB variant); earlier £72 by name | £168.00 |
 | Pi 5 **1GB** in stock? | yes (PREFLIGHT); no (ChainSight) | no |
 | Pico 2 in stock? | no (TxLens, one run); yes (PREFLIGHT, TxLens other run) | yes |
-| Return window | 14 or 30 days, "sources" were names of paper authors | (not checked) |
+| Return window | 14 or 30 days, "sources" were names of paper authors | change of mind: notify within **7 working days** of receipt, return at your own expense; faulty: 28 days ([store policy](https://thepihut.com/policies/refund-policy)) |
 
 - Single-Provider price or stock answers were wrong often enough that **acting on one answer is not safe**. Requiring two independent Providers to agree turned those errors into WAIT instead of a wrong purchase.
 - Supply is thin for retail: of 25 Providers listed for `LIVE_SHELF_PRICE_GENERAL`, two returned a price for this store; the rest failed or had no record. When no second opinion exists the guard says so.
 - Answers take 5–60 s; a full decision costs $0.08–0.12 on testnet prices.
-- Return-policy answers are not reliable enough to gate a purchase, so they are shown as hints.
+- Return-policy answers from ranked Providers were not reliable (made-up windows, unrelated "sources"), so the guard now asks
+  [Shelf Truth](https://github.com/mmajjd926-netizen/shelf-truth) first: it reads the store's own published policy and quotes the
+  sentence behind each answer. Only an explicit "no returns except damaged items" changes the decision (to WAIT); a window
+  is shown with its fees and the quote. Answers from other Providers are still shown as hints.
 - **Same question, different answers.** Asked the same stock question 6 times within 20 seconds for a sold-out variant (Pi 5 1GB), one Provider answered true, false, true, false, null, false. Agreement between two Providers can happen by chance, so before trusting a Provider for stock, run `bin/consistency.mjs` against it (below). Report with signal hashes: https://github.com/telegraphprotocol/bounties/issues/240.
 
 ### Check a stock Provider before you rely on it

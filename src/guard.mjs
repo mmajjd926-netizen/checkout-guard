@@ -25,7 +25,17 @@ export async function gather(tg, order, { secondOpinion = true, returns = true }
     price_ranked: () => tg.ask(price, { product, store: retailer }, { purpose: 'price_ranked' }),
     stock: () => tg.ask(stock, { sku: product, retailer }, { purpose: 'stock' }),
   };
-  if (returns) tasks.returns = () => tg.ask(ret, { retailer }, { purpose: 'returns' });
+  // Return policy: asked of a Provider that quotes the store's own published policy (Shelf Truth by default),
+  // with the ranked Provider as the fallback when that one cannot answer.
+  if (returns) tasks.returns = async () => {
+    const question = order.returnQuestion || 'Buying now for home delivery. If it arrives unused and I change my mind, can I return it, within how many days, and what does a return cost?';
+    const pinned = order.returnsMiner === null ? null : String(order.returnsMiner || '7310457');
+    if (pinned) {
+      const c = await tg.ask(ret, { store: retailer, question }, { miner: pinned, purpose: 'returns' });
+      if (c.ok && (isNum(c.answer?.return_window_days) || c.answer?.returnable === false)) return c;
+    }
+    return tg.ask(ret, { retailer, store: retailer, question }, { purpose: 'returns' });
+  };
 
   const evidence = {};
   const errors = [];
@@ -120,10 +130,18 @@ export function decide(order, evidence, { now = new Date(), budgetErrors = [] } 
   }
 
   // 4. Return policy (informational: never blocks, but shown with a quality note)
+  // A store that takes no change-of-mind returns is the one case that waits: the buyer should know before paying.
   const r = evidence.returns;
-  if (r?.ok && isNum(r.answer?.return_window_days)) {
-    const weak = r.answer?.verified === false || looksLikeNoise(r.answer?.sources);
-    add('returns', 'info', `Return window ${r.answer.return_window_days} days${weak ? ' (Provider marked it unverified or cited unrelated sources; treat as a hint)' : ''}.`, src(r));
+  const a = r?.ok ? r.answer || {} : {};
+  const quoted = Array.isArray(a.evidence) && a.evidence.length && typeof a.policy_url === 'string';
+  const quote = quoted ? ` Store policy: "${String(a.evidence[0]).slice(0, 220)}" (${a.policy_url})` : '';
+  if (r?.ok && a.returnable === false && quoted && a.days_remaining == null) {
+    add('returns', 'wait', `This store does not accept change-of-mind returns; confirm you still want to buy.${quote}`, src(r));
+  } else if (r?.ok && isNum(a.return_window_days)) {
+    const weak = !quoted && (a.verified === false || looksLikeNoise(a.sources));
+    const extra = [a.window_counts_from && `from ${a.window_counts_from}`, a.return_fee && `return fee ${a.return_fee}`, a.restocking_fee && `restocking fee ${a.restocking_fee}`,
+      a.return_shipping_paid_by === 'customer' && 'you pay return postage'].filter(Boolean).join(', ');
+    add('returns', 'info', `Return window ${a.return_window_days} ${a.window_unit || 'days'}${extra ? ` (${extra})` : ''}.${quote}${weak ? ' (Provider marked it unverified or cited unrelated sources; treat as a hint)' : ''}`, src(r));
   }
 
   for (const e of new Set(budgetErrors)) add('intelligence_budget', 'wait', e);
