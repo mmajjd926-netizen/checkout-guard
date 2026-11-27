@@ -1,11 +1,11 @@
 {
-  "spentToday": 0.3,
+  "spentToday": 0.39,
   "day": "2026-11-27",
   "last": {
     "decision": "WAIT",
-    "finished_at": "2026-11-27T08:18:10.086Z",
-    "summary": "Not yet: URL safety is \"Unknown\". No Provider returned a price for this product and store. Providers disagree on stock: in stock per TxLens; out of stock per OFF SKU V0.",
-    "spent_usd": 0.1
+    "finished_at": "2026-11-27T11:17:47.753Z",
+    "summary": "Not yet: URL safety is \"Unknown\". No Provider returned a price for this product and store. intelligence budget exhausted: spent $0.09 of $0.06 intelligence budget exhausted: spent $0.09 of $0.06",
+    "spent_usd": 0.09
   },
   "history": [
     {
@@ -43,6 +43,12 @@
       "finished_at": "2026-11-27T08:18:10.086Z",
       "summary": "Not yet: URL safety is \"Unknown\". No Provider returned a price for this product and store. Providers disagree on stock: in stock per TxLens; out of stock per OFF SKU V0.",
       "spent_usd": 0.1
+    },
+    {
+      "decision": "WAIT",
+      "finished_at": "2026-11-27T11:17:47.753Z",
+      "summary": "Not yet: URL safety is \"Unknown\". No Provider returned a price for this product and store. intelligence budget exhausted: spent $0.09 of $0.06 intelligence budget exhausted: spent $0.09 of $0.06",
+      "spent_usd": 0.09
     }
   ]
 }
