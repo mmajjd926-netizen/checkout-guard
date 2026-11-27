@@ -1,0 +1,345 @@
+{
+  "app": "checkout-guard",
+  "version": "0.1.0",
+  "order": {
+    "product": "Raspberry Pi 5 8GB",
+    "url": "https://thepihut.com/products/raspberry-pi-5?variant=42531604955331",
+    "retailer": "thepihut.com",
+    "maxPrice": 180,
+    "currency": "GBP"
+  },
+  "started_at": "2026-11-27T20:17:01.867Z",
+  "finished_at": "2026-11-27T20:17:13.692Z",
+  "decision": {
+    "decision": "WAIT",
+    "summary": "Not yet: No usable URL-safety answer (HTTP 502: <!DOCTYPE html>\n<!--[if lt IE 7]> <html class=\"no-js ie6 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if IE 7]>    <html class=\"no-js ie7 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if IE 8]>    <html class=\"no-js ie8 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if gt IE 8]><!--> <html class=\"no-js\" lang=\"en-US\"> <!). No Provider returned a price for this product and store. Stock is unknown (HTTP 502: <!DOCTYPE html>\n<!--[if lt IE 7]> <html class=\"no-js ie6 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if IE 7]>    <html class=\"no-js ie7 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if IE 8]>    <html class=\"no-js ie8 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if gt IE 8]><!--> <html class=\"no-js\" lang=\"en-US\"> <!).",
+    "checks": [
+      {
+        "id": "url_safety",
+        "status": "wait",
+        "detail": "No usable URL-safety answer (HTTP 502: <!DOCTYPE html>\n<!--[if lt IE 7]> <html class=\"no-js ie6 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if IE 7]>    <html class=\"no-js ie7 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if IE 8]>    <html class=\"no-js ie8 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if gt IE 8]><!--> <html class=\"no-js\" lang=\"en-US\"> <!).",
+        "sources": [
+          {
+            "purpose": "url_safety",
+            "miner": null,
+            "miner_id": null,
+            "receipt": null,
+            "signal_hash": null,
+            "cost_usd": 0,
+            "error": "HTTP 502: <!DOCTYPE html>\n<!--[if lt IE 7]> <html class=\"no-js ie6 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if IE 7]>    <html class=\"no-js ie7 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if IE 8]>    <html class=\"no-js ie8 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if gt IE 8]><!--> <html class=\"no-js\" lang=\"en-US\"> <!"
+          }
+        ]
+      },
+      {
+        "id": "price_found",
+        "status": "wait",
+        "detail": "No Provider returned a price for this product and store.",
+        "sources": [
+          {
+            "purpose": "price_ranked",
+            "miner": null,
+            "miner_id": null,
+            "receipt": null,
+            "signal_hash": null,
+            "cost_usd": 0,
+            "error": "HTTP 502: <!DOCTYPE html>\n<!--[if lt IE 7]> <html class=\"no-js ie6 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if IE 7]>    <html class=\"no-js ie7 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if IE 8]>    <html class=\"no-js ie8 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if gt IE 8]><!--> <html class=\"no-js\" lang=\"en-US\"> <!"
+          }
+        ]
+      },
+      {
+        "id": "in_stock",
+        "status": "wait",
+        "detail": "Stock is unknown (HTTP 502: <!DOCTYPE html>\n<!--[if lt IE 7]> <html class=\"no-js ie6 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if IE 7]>    <html class=\"no-js ie7 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if IE 8]>    <html class=\"no-js ie8 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if gt IE 8]><!--> <html class=\"no-js\" lang=\"en-US\"> <!).",
+        "sources": [
+          {
+            "purpose": "stock",
+            "miner": null,
+            "miner_id": null,
+            "receipt": null,
+            "signal_hash": null,
+            "cost_usd": 0,
+            "error": "HTTP 502: <!DOCTYPE html>\n<!--[if lt IE 7]> <html class=\"no-js ie6 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if IE 7]>    <html class=\"no-js ie7 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if IE 8]>    <html class=\"no-js ie8 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if gt IE 8]><!--> <html class=\"no-js\" lang=\"en-US\"> <!"
+          }
+        ]
+      }
+    ]
+  },
+  "ledger": {
+    "cap_usd": 0.3,
+    "spent_usd": 0,
+    "calls": [
+      {
+        "purpose": "url_safety",
+        "intent": "URL_SAFE_GENERAL",
+        "params": {
+          "url": "https://thepihut.com/products/raspberry-pi-5?variant=42531604955331"
+        },
+        "pinned_miner": null,
+        "ok": false,
+        "http": 502,
+        "error": "HTTP 502: <!DOCTYPE html>\n<!--[if lt IE 7]> <html class=\"no-js ie6 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if IE 7]>    <html class=\"no-js ie7 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if IE 8]>    <html class=\"no-js ie8 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if gt IE 8]><!--> <html class=\"no-js\" lang=\"en-US\"> <!",
+        "miner_id": null,
+        "miner": null,
+        "delivery": null,
+        "answer": null,
+        "field_status": null,
+        "warnings": [],
+        "cost_usd": 0,
+        "receipts": [],
+        "signal_hash": null,
+        "started_at": "2026-11-27T20:17:01.869Z",
+        "latency_ms": 1603
+      },
+      {
+        "purpose": "price_ranked",
+        "intent": "LIVE_SHELF_PRICE_GENERAL",
+        "params": {
+          "product": "Raspberry Pi 5 8GB",
+          "store": "thepihut.com"
+        },
+        "pinned_miner": null,
+        "ok": false,
+        "http": 502,
+        "error": "HTTP 502: <!DOCTYPE html>\n<!--[if lt IE 7]> <html class=\"no-js ie6 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if IE 7]>    <html class=\"no-js ie7 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if IE 8]>    <html class=\"no-js ie8 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if gt IE 8]><!--> <html class=\"no-js\" lang=\"en-US\"> <!",
+        "miner_id": null,
+        "miner": null,
+        "delivery": null,
+        "answer": null,
+        "field_status": null,
+        "warnings": [],
+        "cost_usd": 0,
+        "receipts": [],
+        "signal_hash": null,
+        "started_at": "2026-11-27T20:17:02.034Z",
+        "latency_ms": 1454
+      },
+      {
+        "purpose": "returns",
+        "intent": "RETURN_POLICY_VERIFY_GENERAL",
+        "params": {
+          "store": "thepihut.com",
+          "question": "Buying now for home delivery. If it arrives unused and I change my mind, can I return it, within how many days, and what does a return cost?"
+        },
+        "pinned_miner": "7310457",
+        "ok": false,
+        "http": 502,
+        "error": "HTTP 502: <!DOCTYPE html>\n<!--[if lt IE 7]> <html class=\"no-js ie6 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if IE 7]>    <html class=\"no-js ie7 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if IE 8]>    <html class=\"no-js ie8 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if gt IE 8]><!--> <html class=\"no-js\" lang=\"en-US\"> <!",
+        "miner_id": null,
+        "miner": null,
+        "delivery": null,
+        "answer": null,
+        "field_status": null,
+        "warnings": [],
+        "cost_usd": 0,
+        "receipts": [],
+        "signal_hash": null,
+        "started_at": "2026-11-27T20:17:02.052Z",
+        "latency_ms": 2291
+      },
+      {
+        "purpose": "stock",
+        "intent": "SKU_IN_STOCK_GENERAL",
+        "params": {
+          "sku": "Raspberry Pi 5 8GB",
+          "retailer": "thepihut.com"
+        },
+        "pinned_miner": null,
+        "ok": false,
+        "http": 502,
+        "error": "HTTP 502: <!DOCTYPE html>\n<!--[if lt IE 7]> <html class=\"no-js ie6 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if IE 7]>    <html class=\"no-js ie7 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if IE 8]>    <html class=\"no-js ie8 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if gt IE 8]><!--> <html class=\"no-js\" lang=\"en-US\"> <!",
+        "miner_id": null,
+        "miner": null,
+        "delivery": null,
+        "answer": null,
+        "field_status": null,
+        "warnings": [],
+        "cost_usd": 0,
+        "receipts": [],
+        "signal_hash": null,
+        "started_at": "2026-11-27T20:17:02.047Z",
+        "latency_ms": 2466
+      },
+      {
+        "purpose": "returns",
+        "intent": "RETURN_POLICY_VERIFY_GENERAL",
+        "params": {
+          "retailer": "thepihut.com",
+          "store": "thepihut.com",
+          "question": "Buying now for home delivery. If it arrives unused and I change my mind, can I return it, within how many days, and what does a return cost?"
+        },
+        "pinned_miner": null,
+        "ok": false,
+        "http": 200,
+        "error": "no Provider answered; the node fell back to a general model (not used as evidence)",
+        "miner_id": "openai",
+        "miner": "openai",
+        "delivery": "last_resort",
+        "answer": {
+          "retailer": null,
+          "return_window_days": 30,
+          "conditions": [
+            "30-day return policy for unused items",
+            "You will be responsible for the return postage costs"
+          ],
+          "verified": null,
+          "sources": null
+        },
+        "field_status": {
+          "retailer": "rejected",
+          "return_window_days": "ok",
+          "conditions": "ok",
+          "verified": "rejected",
+          "sources": "missing"
+        },
+        "warnings": [
+          "no miner could answer this, so it was answered by a general model"
+        ],
+        "cost_usd": 0,
+        "receipts": [],
+        "signal_hash": "0x70d96759023a78930a0a9640ec6a50059a911c3e401f1b16539c32c19f377a99",
+        "started_at": "2026-11-27T20:17:04.343Z",
+        "latency_ms": 4778
+      },
+      {
+        "purpose": "price_second",
+        "intent": "LIVE_SHELF_PRICE_GENERAL",
+        "params": {
+          "product": "https://thepihut.com/products/raspberry-pi-5?variant=42531604955331",
+          "store": "thepihut.com"
+        },
+        "pinned_miner": "7310457",
+        "ok": false,
+        "http": 404,
+        "error": "HTTP 404: miner not found: 7310457",
+        "miner_id": null,
+        "miner": null,
+        "delivery": null,
+        "answer": null,
+        "field_status": null,
+        "warnings": [],
+        "cost_usd": 0,
+        "receipts": [],
+        "signal_hash": null,
+        "started_at": "2026-11-27T20:17:10.122Z",
+        "latency_ms": 511
+      },
+      {
+        "purpose": "price_second",
+        "intent": "LIVE_SHELF_PRICE_GENERAL",
+        "params": {
+          "product": "https://thepihut.com/products/raspberry-pi-5?variant=42531604955331",
+          "store": "thepihut.com"
+        },
+        "pinned_miner": "20260828",
+        "ok": false,
+        "http": 404,
+        "error": "HTTP 404: miner not found: 20260828",
+        "miner_id": null,
+        "miner": null,
+        "delivery": null,
+        "answer": null,
+        "field_status": null,
+        "warnings": [],
+        "cost_usd": 0,
+        "receipts": [],
+        "signal_hash": null,
+        "started_at": "2026-11-27T20:17:10.633Z",
+        "latency_ms": 503
+      },
+      {
+        "purpose": "price_second",
+        "intent": "LIVE_SHELF_PRICE_GENERAL",
+        "params": {
+          "product": "https://thepihut.com/products/raspberry-pi-5?variant=42531604955331",
+          "store": "thepihut.com"
+        },
+        "pinned_miner": "1900999010",
+        "ok": false,
+        "http": 404,
+        "error": "HTTP 404: miner not found: 1900999010",
+        "miner_id": null,
+        "miner": null,
+        "delivery": null,
+        "answer": null,
+        "field_status": null,
+        "warnings": [],
+        "cost_usd": 0,
+        "receipts": [],
+        "signal_hash": null,
+        "started_at": "2026-11-27T20:17:11.136Z",
+        "latency_ms": 625
+      },
+      {
+        "purpose": "stock_second",
+        "intent": "SKU_IN_STOCK_GENERAL",
+        "params": {
+          "sku": "https://thepihut.com/products/raspberry-pi-5?variant=42531604955331",
+          "retailer": "thepihut.com"
+        },
+        "pinned_miner": "7310457",
+        "ok": false,
+        "http": 404,
+        "error": "HTTP 404: miner not found: 7310457",
+        "miner_id": null,
+        "miner": null,
+        "delivery": null,
+        "answer": null,
+        "field_status": null,
+        "warnings": [],
+        "cost_usd": 0,
+        "receipts": [],
+        "signal_hash": null,
+        "started_at": "2026-11-27T20:17:12.095Z",
+        "latency_ms": 490
+      },
+      {
+        "purpose": "stock_second",
+        "intent": "SKU_IN_STOCK_GENERAL",
+        "params": {
+          "sku": "https://thepihut.com/products/raspberry-pi-5?variant=42531604955331",
+          "retailer": "thepihut.com"
+        },
+        "pinned_miner": "302",
+        "ok": false,
+        "http": 404,
+        "error": "HTTP 404: miner not found: 302",
+        "miner_id": null,
+        "miner": null,
+        "delivery": null,
+        "answer": null,
+        "field_status": null,
+        "warnings": [],
+        "cost_usd": 0,
+        "receipts": [],
+        "signal_hash": null,
+        "started_at": "2026-11-27T20:17:12.586Z",
+        "latency_ms": 537
+      },
+      {
+        "purpose": "stock_second",
+        "intent": "SKU_IN_STOCK_GENERAL",
+        "params": {
+          "sku": "https://thepihut.com/products/raspberry-pi-5?variant=42531604955331",
+          "retailer": "thepihut.com"
+        },
+        "pinned_miner": "20260828",
+        "ok": false,
+        "http": 404,
+        "error": "HTTP 404: miner not found: 20260828",
+        "miner_id": null,
+        "miner": null,
+        "delivery": null,
+        "answer": null,
+        "field_status": null,
+        "warnings": [],
+        "cost_usd": 0,
+        "receipts": [],
+        "signal_hash": null,
+        "started_at": "2026-11-27T20:17:13.123Z",
+        "latency_ms": 567
+      }
+    ],
+    "paid_calls": 0,
+    "failed_calls": 11
+  }
+}

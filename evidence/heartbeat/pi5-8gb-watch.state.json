@@ -3,9 +3,9 @@
   "day": "2026-11-27",
   "last": {
     "decision": "WAIT",
-    "finished_at": "2026-11-27T17:18:27.388Z",
-    "summary": "Not yet: Only one Provider priced it (GBP 168.00); a second opinion was not available.",
-    "spent_usd": 0.05
+    "finished_at": "2026-11-27T20:17:13.692Z",
+    "summary": "Not yet: No usable URL-safety answer (HTTP 502: <!DOCTYPE html>\n<!--[if lt IE 7]> <html class=\"no-js ie6 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if IE 7]>    <html class=\"no-js ie7 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if IE 8]>    <html class=\"no-js ie8 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if gt IE 8]><!--> <html class=\"no-js\" lang=\"en-US\"> <!). No Provider returned a price for this product and store. Stock is unknown (HTTP 502: <!DOCTYPE html>\n<!--[if lt IE 7]> <html class=\"no-js ie6 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if IE 7]>    <html class=\"no-js ie7 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if IE 8]>    <html class=\"no-js ie8 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if gt IE 8]><!--> <html class=\"no-js\" lang=\"en-US\"> <!).",
+    "spent_usd": 0
   },
   "history": [
     {
@@ -61,6 +61,12 @@
       "finished_at": "2026-11-27T17:18:27.388Z",
       "summary": "Not yet: Only one Provider priced it (GBP 168.00); a second opinion was not available.",
       "spent_usd": 0.05
+    },
+    {
+      "decision": "WAIT",
+      "finished_at": "2026-11-27T20:17:13.692Z",
+      "summary": "Not yet: No usable URL-safety answer (HTTP 502: <!DOCTYPE html>\n<!--[if lt IE 7]> <html class=\"no-js ie6 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if IE 7]>    <html class=\"no-js ie7 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if IE 8]>    <html class=\"no-js ie8 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if gt IE 8]><!--> <html class=\"no-js\" lang=\"en-US\"> <!). No Provider returned a price for this product and store. Stock is unknown (HTTP 502: <!DOCTYPE html>\n<!--[if lt IE 7]> <html class=\"no-js ie6 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if IE 7]>    <html class=\"no-js ie7 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if IE 8]>    <html class=\"no-js ie8 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if gt IE 8]><!--> <html class=\"no-js\" lang=\"en-US\"> <!).",
+      "spent_usd": 0
     }
   ]
 }
