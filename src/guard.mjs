@@ -39,12 +39,12 @@ export async function gather(tg, order, { secondOpinion = true, returns = true }
   if (secondOpinion) {
     await opinions(tg, evidence, errors, {
       intent: price, first: 'price_ranked', slots: ['price_second', 'price_third'],
-      params: { product: order.url, store: retailer }, preferred: order.priceMiners || ['20260828', '1900999010', '9002', '7310991'],
+      params: { product: order.url, store: retailer }, preferred: order.priceMiners || ['7310457', '20260828', '1900999010', '9002', '7310991'],
       usable: c => isNum(c.answer?.price), disagree: (a, b) => pctApart(a.answer.price, b.answer.price) > RULES.priceAgreementPct,
     });
     await opinions(tg, evidence, errors, {
       intent: stock, first: 'stock', slots: ['stock_second', 'stock_third'],
-      params: { sku: order.url, retailer }, preferred: order.stockMiners || ['302', '20260828', '9002'],
+      params: { sku: order.url, retailer }, preferred: order.stockMiners || ['7310457', '302', '20260828', '9002'],
       usable: c => stockValue(c) !== null, disagree: (a, b) => stockValue(a) !== stockValue(b),
     });
   }
