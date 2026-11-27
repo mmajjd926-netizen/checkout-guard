@@ -1,11 +1,11 @@
 {
-  "spentToday": 0.45,
+  "spentToday": 0.5,
   "day": "2026-11-27",
   "last": {
     "decision": "WAIT",
-    "finished_at": "2026-11-27T14:17:38.892Z",
-    "summary": "Not yet: URL safety is \"Unknown\". Only one Provider priced it (GBP 168.00); a second opinion was not available.",
-    "spent_usd": 0.06
+    "finished_at": "2026-11-27T17:18:27.388Z",
+    "summary": "Not yet: Only one Provider priced it (GBP 168.00); a second opinion was not available.",
+    "spent_usd": 0.05
   },
   "history": [
     {
@@ -55,6 +55,12 @@
       "finished_at": "2026-11-27T14:17:38.892Z",
       "summary": "Not yet: URL safety is \"Unknown\". Only one Provider priced it (GBP 168.00); a second opinion was not available.",
       "spent_usd": 0.06
+    },
+    {
+      "decision": "WAIT",
+      "finished_at": "2026-11-27T17:18:27.388Z",
+      "summary": "Not yet: Only one Provider priced it (GBP 168.00); a second opinion was not available.",
+      "spent_usd": 0.05
     }
   ]
 }
