@@ -139,6 +139,16 @@ TELEGRAPH_API_KEY=anjoman_... node bin/consistency.mjs <minerId> 'https://thepih
 
 It reads the variant's availability from the store's own Shopify data, asks the pinned Provider the same `SKU_IN_STOCK_GENERAL` question N times (by URL, then by SKU), and prints one JSON line per answer with its signal hash plus a summary `{agree, disagree, none}`. Cost: about $0.01 per ask on testnet.
 
+## Run a Provider? Check it and get listed
+
+If you operate a Provider for `SKU_IN_STOCK_GENERAL` or `LIVE_SHELF_PRICE_GENERAL`, three concrete next steps:
+
+1. Run `bin/consistency.mjs` above against your own miner id (about $0.03 of testnet USDC for 3 asks). The reference URL is a public product page whose true availability the script reads from the store itself, so you get a pass/fail without trusting anyone.
+2. Post the JSON summary line in [issue #240](https://github.com/telegraphprotocol/bounties/issues/240) (or open an issue here). Failures are useful too: they show which question shapes Providers get wrong.
+3. If your Provider answers 3 of 3 consistently and matches the store, open a pull request adding your miner id to the default `preferred` lists in `src/guard.mjs`. Checkout Guard will then ask you first for second opinions, which is real paid traffic to your Provider.
+
+New to Telegraph? Start with the [bounties repo](https://github.com/telegraphprotocol/bounties) and its Intent catalogue (`docs/INTENTS.md`), then follow "Run it yourself" above: a first paid answer takes about ten minutes on testnet.
+
 ## Tests
 
 `npm test` runs 16 offline tests on the decision rules and the client:
