@@ -1,11 +1,11 @@
 {
-  "spentToday": 0.11,
+  "spentToday": 0.2,
   "day": "2026-11-27",
   "last": {
     "decision": "WAIT",
-    "finished_at": "2026-11-27T02:18:00.460Z",
-    "summary": "Not yet: No Provider returned a price for this product and store. intelligence budget exhausted: spent $0.11 of $0.15",
-    "spent_usd": 0.11
+    "finished_at": "2026-11-27T05:18:06.344Z",
+    "summary": "Not yet: No Provider returned a price for this product and store.",
+    "spent_usd": 0.09
   },
   "history": [
     {
@@ -31,6 +31,12 @@
       "finished_at": "2026-11-27T02:18:00.460Z",
       "summary": "Not yet: No Provider returned a price for this product and store. intelligence budget exhausted: spent $0.11 of $0.15",
       "spent_usd": 0.11
+    },
+    {
+      "decision": "WAIT",
+      "finished_at": "2026-11-27T05:18:06.344Z",
+      "summary": "Not yet: No Provider returned a price for this product and store.",
+      "spent_usd": 0.09
     }
   ]
 }
