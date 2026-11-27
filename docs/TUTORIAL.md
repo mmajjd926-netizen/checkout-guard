@@ -47,6 +47,12 @@ async ask(intent, params, { miner } = {}) {
 The heartbeat (`bin/heartbeat.mjs`) adds a second, daily cap on top: each tick computes
 `min(perCheckCapUsd, dailyBudgetUsd - spentToday)` and buys nothing if that is below one call's reserve.
 
+Asks run in parallel, so the client reserves $0.05 for every call that is still in flight and counts it
+against the cap before starting the next one. (Before 27 Nov it only counted finished calls: four parallel
+asks with $0.06 left each saw $0 spent, and the tick spent $0.09. The regression test is
+`parallel asks cannot cross the cap together`.) Size `perCheckCapUsd` for the calls you want in flight at
+once: four first-round asks need $0.20 of headroom before any second opinion can start.
+
 ## 3. Failures are evidence, not exceptions
 
 A Provider error should not crash the agent, and it must never be mistaken for an answer. Every call, good or bad,

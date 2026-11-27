@@ -16,8 +16,12 @@ export class BudgetExceeded extends Error {
 }
 
 export class Ledger {
-  constructor(capUsd) { this.cap = capUsd; this.spent = 0; this.calls = []; }
-  canAfford() { return this.spent + RESERVE_PER_CALL <= this.cap + 1e-9; }
+  constructor(capUsd) { this.cap = capUsd; this.spent = 0; this.reserved = 0; this.calls = []; }
+  // Calls run in parallel, so money already promised to in-flight calls counts too.
+  // Without this, four parallel asks all saw spent=0 and together crossed the cap.
+  canAfford() { return this.spent + this.reserved + RESERVE_PER_CALL <= this.cap + 1e-9; }
+  reserve() { this.reserved = round(this.reserved + RESERVE_PER_CALL); }
+  release() { this.reserved = Math.max(0, round(this.reserved - RESERVE_PER_CALL)); }
   record(call) { this.calls.push(call); this.spent = round(this.spent + (call.cost_usd || 0)); }
   summary() {
     const paid = this.calls.filter(c => c.cost_usd > 0);
@@ -39,6 +43,7 @@ export class Telegraph {
   // failure is part of the evidence.
   async ask(intent, params, { miner, purpose } = {}) {
     if (!this.ledger.canAfford()) throw new BudgetExceeded(this.ledger.spent, this.ledger.cap);
+    this.ledger.reserve();
     const started = new Date();
     const url = `${this.api}/engine/ask${miner ? '/' + encodeURIComponent(miner) : ''}`;
     let http = 0, body = null, error = null;
@@ -76,6 +81,7 @@ export class Telegraph {
       latency_ms: Date.now() - started.getTime(),
     };
     if (res?.delivery === 'last_resort') call.error = 'no Provider answered; the node fell back to a general model (not used as evidence)';
+    this.ledger.release();
     this.ledger.record(call);
     return call;
   }

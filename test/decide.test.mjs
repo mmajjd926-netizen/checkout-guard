@@ -119,6 +119,19 @@ test('the client refuses to spend past its cap', async () => {
   assert.equal(tg.ledger.spent, 0.06);
 });
 
+test('parallel asks cannot cross the cap together', async () => {
+  // Regression: on 27 Nov a heartbeat tick with $0.06 left fired 4 asks at once;
+  // each saw spent=0, all went through, and the tick spent $0.09.
+  let calls = 0;
+  const fake = async () => { calls++; await new Promise(r => setTimeout(r, 20)); return new Response(JSON.stringify({ result: { miner_name: 'm', result: { verdict: 'Safe' }, cost_usd_total: 0.03, payments: [] } }), { status: 200 }); };
+  const tg = new Telegraph({ apiKey: 'test', capUsd: 0.06, fetchImpl: fake });
+  const res = await Promise.allSettled([1, 2, 3, 4].map(() => tg.ask('URL_SAFE_GENERAL', { url: 'https://example.com' })));
+  assert.equal(calls, 1);
+  assert.equal(res.filter(r => r.status === 'rejected' && r.reason instanceof BudgetExceeded).length, 3);
+  assert.ok(tg.ledger.spent <= 0.06);
+  assert.equal(tg.ledger.reserved, 0);
+});
+
 test('a refused payment is recorded as a failure, not an answer', async () => {
   const fake = async () => new Response(JSON.stringify({ message: 'Invalid API key' }), { status: 401 });
   const tg = new Telegraph({ apiKey: 'bad', capUsd: 0.10, fetchImpl: fake });

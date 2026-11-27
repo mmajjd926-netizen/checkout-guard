@@ -5,6 +5,6 @@
   "currency": "GBP",
   "everyMinutes": 180,
   "freshMinutes": 170,
-  "dailyBudgetUsd": 0.36,
-  "perCheckCapUsd": 0.15
+  "dailyBudgetUsd": 1.2,
+  "perCheckCapUsd": 0.3
 }

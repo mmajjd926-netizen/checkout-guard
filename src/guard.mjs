@@ -126,7 +126,7 @@ export function decide(order, evidence, { now = new Date(), budgetErrors = [] } 
     add('returns', 'info', `Return window ${r.answer.return_window_days} days${weak ? ' (Provider marked it unverified or cited unrelated sources; treat as a hint)' : ''}.`, src(r));
   }
 
-  for (const e of budgetErrors) add('intelligence_budget', 'wait', e);
+  for (const e of new Set(budgetErrors)) add('intelligence_budget', 'wait', e);
 
   const status = checks.some(c => c.status === 'block') ? 'BLOCK' : checks.some(c => c.status === 'wait') ? 'WAIT' : 'READY';
   const why = checks.filter(c => c.status === (status === 'BLOCK' ? 'block' : 'wait')).map(c => c.detail);
