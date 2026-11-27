@@ -1,11 +1,11 @@
 {
-  "spentToday": 0.2,
+  "spentToday": 0.3,
   "day": "2026-11-27",
   "last": {
     "decision": "WAIT",
-    "finished_at": "2026-11-27T05:18:06.344Z",
-    "summary": "Not yet: No Provider returned a price for this product and store.",
-    "spent_usd": 0.09
+    "finished_at": "2026-11-27T08:18:10.086Z",
+    "summary": "Not yet: URL safety is \"Unknown\". No Provider returned a price for this product and store. Providers disagree on stock: in stock per TxLens; out of stock per OFF SKU V0.",
+    "spent_usd": 0.1
   },
   "history": [
     {
@@ -37,6 +37,12 @@
       "finished_at": "2026-11-27T05:18:06.344Z",
       "summary": "Not yet: No Provider returned a price for this product and store.",
       "spent_usd": 0.09
+    },
+    {
+      "decision": "WAIT",
+      "finished_at": "2026-11-27T08:18:10.086Z",
+      "summary": "Not yet: URL safety is \"Unknown\". No Provider returned a price for this product and store. Providers disagree on stock: in stock per TxLens; out of stock per OFF SKU V0.",
+      "spent_usd": 0.1
     }
   ]
 }
