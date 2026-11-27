@@ -145,7 +145,7 @@ test('return policy quoted from the store: shown as info, READY unchanged', () =
   const d = decide(order, e, { now: NOW });
   assert.equal(d.decision, 'READY');
   const c = d.checks.find(c => c.id === 'returns');
-  assert.equal(c.status, 'info'); assert.match(c.detail, /7 working days \(from delivery, you pay return postage\)/); assert.match(c.detail, /policies\/refund-policy/);
+  assert.equal(c.status, 'info'); assert.match(c.detail, /7 working days from delivery \(you pay return postage\)/); assert.match(c.detail, /policies\/refund-policy/);
 });
 
 test('a store that takes no change-of-mind returns makes the buyer confirm first', () => {
@@ -153,4 +153,17 @@ test('a store that takes no change-of-mind returns makes the buyer confirm first
     evidence: ['…we are unable to offer any returns or exchanges for any other reasons.'], policy_url: 'https://colourpop.com/policies/refund-policy' });
   const d = decide(order, e, { now: NOW });
   assert.equal(d.decision, 'WAIT'); assert.equal(status(d, 'returns'), 'wait');
+});
+
+test('canonical Telegraph answer from Shelf Truth (conditions + verified + sources)', () => {
+  const e = good(); e.returns = call('returns', { retailer: 'thepihut.com', return_window_days: 7, verified: true, sources: ['https://thepihut.com/policies/refund-policy'],
+    conditions: ['Return window: 7 working days from delivery', 'Faulty or damaged items: 28 calendar days', 'Restocking fee: none stated in the policy', 'Return shipping paid by: customer',
+      'Policy: "…provided you inform us of your decision within 7 working days of receipt."'] });
+  const d = decide(order, e, { now: NOW });
+  assert.equal(d.decision, 'READY');
+  const c = d.checks.find(c => c.id === 'returns');
+  assert.match(c.detail, /^Return window 7 working days from delivery \(Faulty or damaged items: 28 calendar days; Restocking fee: none stated in the policy; Return shipping paid by: customer\)\. Store policy: "…provided/);
+  const n = good(); n.returns = call('returns', { retailer: 'colourpop.com', return_window_days: null, verified: true, sources: ['https://colourpop.com/policies/refund-policy'],
+    conditions: ['No change-of-mind returns: only damaged or faulty items', 'Policy: "…unable to offer any returns or exchanges for any other reasons."'] });
+  assert.equal(decide(order, n, { now: NOW }).decision, 'WAIT');
 });

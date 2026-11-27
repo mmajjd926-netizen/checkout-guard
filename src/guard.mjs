@@ -133,15 +133,23 @@ export function decide(order, evidence, { now = new Date(), budgetErrors = [] } 
   // A store that takes no change-of-mind returns is the one case that waits: the buyer should know before paying.
   const r = evidence.returns;
   const a = r?.ok ? r.answer || {} : {};
-  const quoted = Array.isArray(a.evidence) && a.evidence.length && typeof a.policy_url === 'string';
-  const quote = quoted ? ` Store policy: "${String(a.evidence[0]).slice(0, 220)}" (${a.policy_url})` : '';
-  if (r?.ok && a.returnable === false && quoted && a.days_remaining == null) {
+  // Through Telegraph the answer is canonical: { return_window_days, conditions, verified, sources }. Shelf Truth puts
+  // summary lines first in conditions and the quoted policy sentences after them ("Policy: \"...\"").
+  const conds = Array.isArray(a.conditions) ? a.conditions.map(String) : [];
+  const policyUrl = typeof a.policy_url === 'string' ? a.policy_url : (Array.isArray(a.sources) && /^https?:\/\//.test(a.sources[0]) ? a.sources[0] : null);
+  const firstQuote = (Array.isArray(a.evidence) && a.evidence[0]) || (conds.find(c => c.startsWith('Policy: ')) || '').replace(/^Policy: "?|"$/g, '');
+  const quoted = !!(firstQuote && policyUrl && (a.verified === true || Array.isArray(a.evidence)));
+  const quote = quoted ? ` Store policy: "${String(firstQuote).slice(0, 220)}" (${policyUrl})` : '';
+  const noReturns = (a.returnable === false && a.days_remaining == null) || conds.some(c => /^No change-of-mind returns/.test(c));
+  if (r?.ok && noReturns && quoted) {
     add('returns', 'wait', `This store does not accept change-of-mind returns; confirm you still want to buy.${quote}`, src(r));
   } else if (r?.ok && isNum(a.return_window_days)) {
     const weak = !quoted && (a.verified === false || looksLikeNoise(a.sources));
-    const extra = [a.window_counts_from && `from ${a.window_counts_from}`, a.return_fee && `return fee ${a.return_fee}`, a.restocking_fee && `restocking fee ${a.restocking_fee}`,
+    const summary = conds.filter(c => !c.startsWith('Policy: ') && !/^Return window/.test(c));
+    const extra = summary.length ? summary.join('; ') : [a.return_fee && `return fee ${a.return_fee}`, a.restocking_fee && `restocking fee ${a.restocking_fee}`,
       a.return_shipping_paid_by === 'customer' && 'you pay return postage'].filter(Boolean).join(', ');
-    add('returns', 'info', `Return window ${a.return_window_days} ${a.window_unit || 'days'}${extra ? ` (${extra})` : ''}.${quote}${weak ? ' (Provider marked it unverified or cited unrelated sources; treat as a hint)' : ''}`, src(r));
+    const head = conds.find(c => /^Return window/.test(c))?.replace(/^Return window: /, '') || `${a.return_window_days} ${a.window_unit || 'days'}${a.window_counts_from ? ` from ${a.window_counts_from}` : ''}`;
+    add('returns', 'info', `Return window ${head}${extra ? ` (${extra})` : ''}.${quote}${weak ? ' (Provider marked it unverified or cited unrelated sources; treat as a hint)' : ''}`, src(r));
   }
 
   for (const e of new Set(budgetErrors)) add('intelligence_budget', 'wait', e);
