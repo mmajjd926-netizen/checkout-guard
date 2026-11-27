@@ -1,0 +1,436 @@
+{
+  "app": "checkout-guard",
+  "version": "0.1.0",
+  "order": {
+    "product": "Raspberry Pi 5 8GB",
+    "url": "https://thepihut.com/products/raspberry-pi-5?variant=42531604955331",
+    "retailer": "thepihut.com",
+    "maxPrice": 180,
+    "currency": "GBP"
+  },
+  "started_at": "2026-11-27T02:17:02.126Z",
+  "finished_at": "2026-11-27T02:18:00.460Z",
+  "decision": {
+    "decision": "WAIT",
+    "summary": "Not yet: No Provider returned a price for this product and store. intelligence budget exhausted: spent $0.11 of $0.15",
+    "checks": [
+      {
+        "id": "url_safety",
+        "status": "pass",
+        "detail": "URL not listed by threat sources (0 detections).",
+        "sources": [
+          {
+            "purpose": "url_safety",
+            "miner": "TelegraphIntent",
+            "miner_id": "83159274",
+            "receipt": "0xb2c1a86f51cae61e6f36b32b3fa280f556936f0fa88bd449b5b9343348c531b6",
+            "signal_hash": "0x1bb1c430ff06d1c2558758f00215f4ed3a4f54d7b34cae410ca2297e712e626b",
+            "cost_usd": 0.01,
+            "error": null
+          }
+        ]
+      },
+      {
+        "id": "price_found",
+        "status": "wait",
+        "detail": "No Provider returned a price for this product and store.",
+        "sources": [
+          {
+            "purpose": "price_ranked",
+            "miner": "MetricWire Live Shelf Price",
+            "miner_id": "1900999010",
+            "receipt": "0x8d284147b622cc862150211e01992e8c9d6d388fee307cabd889442b23d0fb5b",
+            "signal_hash": "0xceadb17bfe40be767b8d9af3246d93fb30c7a95be498a7f82ac30254c71bcb65",
+            "cost_usd": 0.03,
+            "error": null
+          }
+        ]
+      },
+      {
+        "id": "in_stock",
+        "status": "pass",
+        "detail": "Provider reports it in stock (ChainSight — Universal Intelligence & Data Oracle); no second opinion was available.",
+        "sources": [
+          {
+            "purpose": "stock",
+            "miner": "ChainSight — Universal Intelligence & Data Oracle",
+            "miner_id": "302",
+            "receipt": "0xbca3478ae8459216fb68fcad96e4c9b42c5f252fa4e18925a8e242cc38447091",
+            "signal_hash": "0x217b08603db1eb9659bd53f24a1bcb67498cba0537098d1fbfeef5f64bfa2737",
+            "cost_usd": 0.02,
+            "error": null
+          }
+        ]
+      },
+      {
+        "id": "returns",
+        "status": "info",
+        "detail": "Return window 30 days (Provider marked it unverified or cited unrelated sources; treat as a hint).",
+        "sources": [
+          {
+            "purpose": "returns",
+            "miner": "VeriReceipt Deterministic Oracle",
+            "miner_id": "774921",
+            "receipt": "0x4b7efed6e75828d293be2130b7940560ae13d5ad15fe504234fe4ff9af6a7218",
+            "signal_hash": "0x27767827a49b1bb36210d6bbac564e96df291ae6e9e469533d89c7f5382699db",
+            "cost_usd": 0.03,
+            "error": null
+          }
+        ]
+      },
+      {
+        "id": "intelligence_budget",
+        "status": "wait",
+        "detail": "intelligence budget exhausted: spent $0.11 of $0.15",
+        "sources": []
+      }
+    ]
+  },
+  "ledger": {
+    "cap_usd": 0.15,
+    "spent_usd": 0.11,
+    "calls": [
+      {
+        "purpose": "url_safety",
+        "intent": "URL_SAFE_GENERAL",
+        "params": {
+          "url": "https://thepihut.com/products/raspberry-pi-5?variant=42531604955331"
+        },
+        "pinned_miner": null,
+        "ok": true,
+        "http": 200,
+        "error": null,
+        "miner_id": "83159274",
+        "miner": "TelegraphIntent",
+        "delivery": "specialist",
+        "answer": {
+          "url": "https://thepihut.com/products/raspberry-pi-5?variant=42531604955331",
+          "verdict": "Safe",
+          "detections": 0,
+          "summary": "Not listed by OpenPhish and Cloudflare Security DNS, and no strong red flag in the address. This consults only keyless sources, so it is not a guarantee."
+        },
+        "field_status": {
+          "url": "ok",
+          "verdict": "ok",
+          "detections": "ok",
+          "summary": "ok"
+        },
+        "warnings": [],
+        "cost_usd": 0.01,
+        "receipts": [
+          {
+            "miner": "telegraph-intent-miner",
+            "amount_uusdc": 10000,
+            "receipt_hash": "0xb2c1a86f51cae61e6f36b32b3fa280f556936f0fa88bd449b5b9343348c531b6"
+          }
+        ],
+        "signal_hash": "0x1bb1c430ff06d1c2558758f00215f4ed3a4f54d7b34cae410ca2297e712e626b",
+        "started_at": "2026-11-27T02:17:02.127Z",
+        "latency_ms": 8487
+      },
+      {
+        "purpose": "returns",
+        "intent": "RETURN_POLICY_VERIFY_GENERAL",
+        "params": {
+          "retailer": "thepihut.com"
+        },
+        "pinned_miner": null,
+        "ok": true,
+        "http": 200,
+        "error": null,
+        "miner_id": "774921",
+        "miner": "VeriReceipt Deterministic Oracle",
+        "delivery": "specialist",
+        "answer": {
+          "retailer": "thepihut.com",
+          "return_window_days": 30,
+          "conditions": [
+            "No reviewed exact US retailer binding; no external merchant policy page was fetched."
+          ],
+          "verified": false,
+          "sources": [
+            "thepihut.com"
+          ]
+        },
+        "field_status": {
+          "retailer": "ok",
+          "return_window_days": "ok",
+          "conditions": "ok",
+          "verified": "ok",
+          "sources": "ok"
+        },
+        "warnings": [
+          "Sources returned conflicting information for: label",
+          "Sources returned conflicting information for: answer",
+          "Sources returned conflicting information for: verdict"
+        ],
+        "cost_usd": 0.03,
+        "receipts": [
+          {
+            "miner": "verireceipt",
+            "amount_uusdc": 10000,
+            "receipt_hash": "0x4b7efed6e75828d293be2130b7940560ae13d5ad15fe504234fe4ff9af6a7218"
+          },
+          {
+            "miner": "ret-zenodo",
+            "amount_uusdc": 10000,
+            "receipt_hash": "0x8656a3300918569cab408a769d9b79bb0ebceb0e4a9800aab287142d71f0ff84"
+          },
+          {
+            "miner": "txlens",
+            "amount_uusdc": 10000,
+            "receipt_hash": "0xd4cf0c0773055193b7f0904c80631efc5a2bbe56f122c391bafc70d09b7265ce"
+          }
+        ],
+        "signal_hash": "0x27767827a49b1bb36210d6bbac564e96df291ae6e9e469533d89c7f5382699db",
+        "started_at": "2026-11-27T02:17:02.296Z",
+        "latency_ms": 31984
+      },
+      {
+        "purpose": "price_ranked",
+        "intent": "LIVE_SHELF_PRICE_GENERAL",
+        "params": {
+          "product": "Raspberry Pi 5 8GB",
+          "store": "thepihut.com"
+        },
+        "pinned_miner": null,
+        "ok": true,
+        "http": 200,
+        "error": null,
+        "miner_id": "1900999010",
+        "miner": "MetricWire Live Shelf Price",
+        "delivery": "specialist",
+        "answer": {
+          "price": null,
+          "currency": "USD",
+          "product": "Raspberry Pi 5 8GB",
+          "store": "thepihut.com",
+          "date": null
+        },
+        "field_status": {
+          "price": "missing",
+          "currency": "ok",
+          "product": "ok",
+          "store": "ok",
+          "date": "missing"
+        },
+        "warnings": [
+          "The response does not include: Date the price was observed",
+          "The response does not include: Shelf price of price record {key}, in major currency units (e.g. euros, not cents)",
+          "Sources returned conflicting information for: status",
+          "Sources returned conflicting information for: summary",
+          "Sources returned conflicting information for: url",
+          "Sources returned conflicting information for: amount",
+          "Some additional information was omitted from this response."
+        ],
+        "cost_usd": 0.03,
+        "receipts": [
+          {
+            "miner": "metricwire-live-shelf-price",
+            "amount_uusdc": 10000,
+            "receipt_hash": "0x8d284147b622cc862150211e01992e8c9d6d388fee307cabd889442b23d0fb5b"
+          },
+          {
+            "miner": "shelf-erapi",
+            "amount_uusdc": 10000,
+            "receipt_hash": "0x0f7954e1e8efc0208a19d93569eb3e3c09b39210a6c835d93854c690befbf25a"
+          },
+          {
+            "miner": "txlens",
+            "amount_uusdc": 10000,
+            "receipt_hash": "0x99dd114af34ea39537e9f39548b8597983601d81ef0bc96398e8668ace12c395"
+          }
+        ],
+        "signal_hash": "0xceadb17bfe40be767b8d9af3246d93fb30c7a95be498a7f82ac30254c71bcb65",
+        "started_at": "2026-11-27T02:17:02.291Z",
+        "latency_ms": 34870
+      },
+      {
+        "purpose": "stock",
+        "intent": "SKU_IN_STOCK_GENERAL",
+        "params": {
+          "sku": "Raspberry Pi 5 8GB",
+          "retailer": "thepihut.com"
+        },
+        "pinned_miner": null,
+        "ok": true,
+        "http": 200,
+        "error": null,
+        "miner_id": "302",
+        "miner": "ChainSight — Universal Intelligence & Data Oracle",
+        "delivery": "specialist",
+        "answer": {
+          "sku": "Raspberry Pi 5 8GB",
+          "retailer": "thepihut.com",
+          "in_stock": true,
+          "quantity": null
+        },
+        "field_status": {
+          "sku": "ok",
+          "retailer": "ok",
+          "in_stock": "ok",
+          "quantity": "rejected"
+        },
+        "warnings": [
+          "The response does not include: Units available, when stated",
+          "Sources returned conflicting information for: answer"
+        ],
+        "cost_usd": 0.02,
+        "receipts": [
+          {
+            "miner": "chainsight-oracle",
+            "amount_uusdc": 10000,
+            "receipt_hash": "0xbca3478ae8459216fb68fcad96e4c9b42c5f252fa4e18925a8e242cc38447091"
+          },
+          {
+            "miner": "txlens",
+            "amount_uusdc": 10000,
+            "receipt_hash": "0xd0dbe9f0fc60f78221cd8f305481c6522451f1a7602e03378612822ff2dec792"
+          }
+        ],
+        "signal_hash": "0x217b08603db1eb9659bd53f24a1bcb67498cba0537098d1fbfeef5f64bfa2737",
+        "started_at": "2026-11-27T02:17:02.294Z",
+        "latency_ms": 38338
+      },
+      {
+        "purpose": "price_second",
+        "intent": "LIVE_SHELF_PRICE_GENERAL",
+        "params": {
+          "product": "https://thepihut.com/products/raspberry-pi-5?variant=42531604955331",
+          "store": "thepihut.com"
+        },
+        "pinned_miner": "20260828",
+        "ok": false,
+        "http": 500,
+        "error": "HTTP 500: upstream error 402: {\"error\": {\"code\": \"402\", \"message\": \"Payment required\"}}",
+        "miner_id": null,
+        "miner": null,
+        "delivery": null,
+        "answer": null,
+        "field_status": null,
+        "warnings": [],
+        "cost_usd": 0,
+        "receipts": [],
+        "signal_hash": null,
+        "started_at": "2026-11-27T02:17:41.338Z",
+        "latency_ms": 3455
+      },
+      {
+        "purpose": "price_second",
+        "intent": "LIVE_SHELF_PRICE_GENERAL",
+        "params": {
+          "product": "https://thepihut.com/products/raspberry-pi-5?variant=42531604955331",
+          "store": "thepihut.com"
+        },
+        "pinned_miner": "9002",
+        "ok": true,
+        "http": 200,
+        "error": null,
+        "miner_id": "9002",
+        "miner": "TxLens",
+        "delivery": null,
+        "answer": {
+          "price": null,
+          "currency": null,
+          "product": null,
+          "store": "thepihut.com",
+          "date": null
+        },
+        "field_status": {
+          "price": "missing",
+          "currency": "missing",
+          "product": "rejected",
+          "store": "ok",
+          "date": "missing"
+        },
+        "warnings": [],
+        "cost_usd": 0.01,
+        "receipts": [],
+        "signal_hash": "0xb23f59d69b36135af614d26b0cfed5507d911e2060f8217bf6884f98adb338d2",
+        "started_at": "2026-11-27T02:17:44.793Z",
+        "latency_ms": 4852
+      },
+      {
+        "purpose": "price_second",
+        "intent": "LIVE_SHELF_PRICE_GENERAL",
+        "params": {
+          "product": "https://thepihut.com/products/raspberry-pi-5?variant=42531604955331",
+          "store": "thepihut.com"
+        },
+        "pinned_miner": "7310991",
+        "ok": false,
+        "http": 500,
+        "error": "HTTP 500: miner error unavailable [no_matching_record]: No verified shelf price is available for this exact request (no_matching_record). Open Prices contains dated contributed observations; no other product or retailer price is substituted.",
+        "miner_id": null,
+        "miner": null,
+        "delivery": null,
+        "answer": null,
+        "field_status": null,
+        "warnings": [],
+        "cost_usd": 0,
+        "receipts": [],
+        "signal_hash": null,
+        "started_at": "2026-11-27T02:17:49.646Z",
+        "latency_ms": 2908
+      },
+      {
+        "purpose": "stock_second",
+        "intent": "SKU_IN_STOCK_GENERAL",
+        "params": {
+          "sku": "https://thepihut.com/products/raspberry-pi-5?variant=42531604955331",
+          "retailer": "thepihut.com"
+        },
+        "pinned_miner": "20260828",
+        "ok": false,
+        "http": 500,
+        "error": "HTTP 500: upstream error 402: {\"error\": {\"code\": \"402\", \"message\": \"Payment required\"}}",
+        "miner_id": null,
+        "miner": null,
+        "delivery": null,
+        "answer": null,
+        "field_status": null,
+        "warnings": [],
+        "cost_usd": 0,
+        "receipts": [],
+        "signal_hash": null,
+        "started_at": "2026-11-27T02:17:53.915Z",
+        "latency_ms": 2616
+      },
+      {
+        "purpose": "stock_second",
+        "intent": "SKU_IN_STOCK_GENERAL",
+        "params": {
+          "sku": "https://thepihut.com/products/raspberry-pi-5?variant=42531604955331",
+          "retailer": "thepihut.com"
+        },
+        "pinned_miner": "9002",
+        "ok": true,
+        "http": 200,
+        "error": null,
+        "miner_id": "9002",
+        "miner": "TxLens",
+        "delivery": null,
+        "answer": {
+          "sku": "https://thepi",
+          "retailer": null,
+          "in_stock": null,
+          "quantity": null
+        },
+        "field_status": {
+          "sku": "ok",
+          "retailer": "missing",
+          "in_stock": "missing",
+          "quantity": "missing"
+        },
+        "warnings": [],
+        "cost_usd": 0.01,
+        "receipts": [],
+        "signal_hash": "0xc60823d96f4c83b970c556335fa71c5fc343cd81e992d3560fa740a3f093eb68",
+        "started_at": "2026-11-27T02:17:56.531Z",
+        "latency_ms": 3924
+      }
+    ],
+    "paid_calls": 6,
+    "failed_calls": 3
+  }
+}
