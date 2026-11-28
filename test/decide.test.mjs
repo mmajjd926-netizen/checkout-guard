@@ -167,3 +167,30 @@ test('canonical Telegraph answer from Shelf Truth (conditions + verified + sourc
     conditions: ['No change-of-mind returns: only damaged or faulty items', 'Policy: "…unable to offer any returns or exchanges for any other reasons."'] });
   assert.equal(decide(order, n, { now: NOW }).decision, 'WAIT');
 });
+
+test('URL "Unknown" from one Provider and "Safe" from a second: passes, and says so', () => {
+  const e = good(); e.url_safety = call('url_safety', { verdict: 'Unknown', detections: 0 }); e.url_second = call('url_second', { verdict: 'Safe', detections: 0 });
+  const d = decide(order, e, { now: NOW });
+  assert.equal(status(d, 'url_safety'), 'pass');
+  assert.match(d.checks.find(c => c.id === 'url_safety').detail, /other Provider said "Unknown"/);
+  assert.equal(d.decision, 'READY');
+});
+
+test('URL "Unknown" alone waits; any Provider flagging it blocks even if another says Safe', () => {
+  const e = good(); e.url_safety = call('url_safety', { verdict: 'Unknown', detections: 0 });
+  assert.equal(status(decide(order, e, { now: NOW }), 'url_safety'), 'wait');
+  e.url_safety = call('url_safety', { verdict: 'Safe', detections: 0 }); e.url_second = call('url_second', { verdict: 'Suspicious', detections: 1 });
+  assert.equal(status(decide(order, e, { now: NOW }), 'url_safety'), 'block');
+});
+
+test('a Provider that labels a GBP shop "$" is outvoted by two GBP answers; with no third answer it waits', () => {
+  const e = good(); e.price_ranked = call('price_ranked', { price: 168, currency: '$', date: '2026-11-26' });
+  const two = decide(order, e, { now: NOW });
+  assert.equal(status(two, 'price_agreement'), 'wait');
+  assert.match(two.checks.find(c => c.id === 'price_agreement').detail, /168\.00 \$ vs 168\.00 GBP/);
+  e.price_third = call('price_third', { price: 169, currency: 'GBP', date: '2026-11-26' });
+  const three = decide(order, e, { now: NOW });
+  assert.equal(status(three, 'price_agreement'), 'pass');
+  assert.equal(status(three, 'currency'), undefined);
+  assert.equal(three.decision, 'READY');
+});

@@ -48,10 +48,17 @@ export async function gather(tg, order, { secondOpinion = true, returns = true }
   // the variant; the name alone often does not). If the two disagree, buy one more opinion
   // and let two out of three decide.
   if (secondOpinion) {
+    // URL safety: "Unknown" means a Provider had no data, not that the link is bad. Ask one other Provider then.
+    if (!urlVerdictKnown(evidence.url_safety)) {
+      await opinions(tg, evidence, errors, {
+        intent: url, first: 'url_safety', slots: ['url_second'], params: { url: order.url },
+        preferred: order.urlMiners || ['83159274', '20260828', '771353'], usable: urlVerdictKnown, disagree: () => false,
+      });
+    }
     await opinions(tg, evidence, errors, {
       intent: price, first: 'price_ranked', slots: ['price_second', 'price_third'],
       params: { product: order.url, store: retailer }, preferred: order.priceMiners || ['7310457', '20260828', '1900999010', '9002', '7310991'],
-      usable: c => isNum(c.answer?.price), disagree: (a, b) => pctApart(a.answer.price, b.answer.price) > RULES.priceAgreementPct,
+      usable: c => isNum(c.answer?.price), disagree: (a, b) => pctApart(a.answer.price, b.answer.price) > RULES.priceAgreementPct || !sameCurrency(a, b),
     });
     await opinions(tg, evidence, errors, {
       intent: stock, first: 'stock', slots: ['stock_second', 'stock_third'],
@@ -69,37 +76,44 @@ export function decide(order, evidence, { now = new Date(), budgetErrors = [] } 
   const add = (id, status, detail, sources = []) => checks.push({ id, status, detail, sources });
 
   // 1. URL safety
-  const u = evidence.url_safety;
-  if (!u?.ok) add('url_safety', 'wait', `No usable URL-safety answer${u?.error ? ` (${u.error})` : ''}.`, src(u));
-  else {
-    const v = String(u.answer?.verdict || 'Unknown');
-    if (/malicious|suspicious/i.test(v)) add('url_safety', 'block', `URL flagged as ${v}${u.answer?.detections ? ` by ${u.answer.detections} source(s)` : ''}.`, src(u));
-    else if (/^safe$/i.test(v)) add('url_safety', 'pass', `URL not listed by threat sources (${u.answer?.detections ?? 0} detections).`, src(u));
-    else add('url_safety', 'wait', `URL safety is "${v}".`, src(u));
-  }
+  // Any Provider flagging the URL blocks; otherwise one "Safe" passes, and the other's "Unknown" is mentioned.
+  const u = evidence.url_safety, u2 = evidence.url_second;
+  const us = [u, u2].filter(c => c?.ok);
+  const flagged = us.find(c => /malicious|suspicious/i.test(String(c.answer?.verdict || '')));
+  const safe = us.find(c => /^safe$/i.test(String(c.answer?.verdict || '')));
+  const uSrc = [...src(u), ...src(u2)];
+  if (flagged) add('url_safety', 'block', `URL flagged as ${flagged.answer.verdict}${flagged.answer?.detections ? ` by ${flagged.answer.detections} source(s)` : ''}.`, uSrc);
+  else if (safe) {
+    const other = us.find(c => c !== safe);
+    add('url_safety', 'pass', `URL not listed by threat sources (${safe.answer?.detections ?? 0} detections)${other ? `; the other Provider said "${other.answer?.verdict || 'Unknown'}"` : ''}.`, uSrc);
+  } else if (!us.length) add('url_safety', 'wait', `No usable URL-safety answer${u?.error ? ` (${u.error})` : ''}.`, uSrc);
+  else add('url_safety', 'wait', `URL safety is "${us.map(c => c.answer?.verdict || 'Unknown').join('" / "')}".`, uSrc);
 
   // 2. Price: present, fresh, and (when two Providers answered) consistent
   const prices = ['price_ranked', 'price_second', 'price_third'].map(k => evidence[k]).filter(c => c?.ok && isNum(c.answer?.price));
   const want = (order.currency || '').toUpperCase();
   if (prices.length === 0) add('price_found', 'wait', 'No Provider returned a price for this product and store.', [...src(evidence.price_ranked), ...src(evidence.price_second)]);
   else {
-    const cur = prices.map(c => String(c.answer.currency || '').toUpperCase()).filter(Boolean);
-    const curOk = !want || cur.length === 0 || cur.every(c => c === want);
-    if (!curOk) add('currency', 'wait', `Price quoted in ${[...new Set(cur)].join('/')}, budget is in ${want}; not converting silently.`, prices.flatMap(src));
     let agreed = prices;
     if (prices.length >= 2) {
       const vals = prices.map(c => Number(c.answer.price));
       const pairs = [];
       for (let i = 0; i < vals.length; i++) for (let j = i + 1; j < vals.length; j++) pairs.push([i, j, pctApart(vals[i], vals[j])]);
-      const ok = pairs.filter(p => p[2] <= RULES.priceAgreementPct).sort((a, b) => a[2] - b[2])[0];
+      const ok = pairs.filter(p => p[2] <= RULES.priceAgreementPct && sameCurrency(prices[p[0]], prices[p[1]])).sort((a, b) => a[2] - b[2])[0];
       if (ok) {
         agreed = [prices[ok[0]], prices[ok[1]]];
         const outliers = prices.filter((_, k) => k !== ok[0] && k !== ok[1]);
-        add('price_agreement', 'pass', `Two independent Providers agree within ${ok[2].toFixed(1)} %: ${fmt(vals[ok[0]], want)} and ${fmt(vals[ok[1]], want)}.` + (outliers.length ? ` Ignored outlier: ${outliers.map(c => `${fmt(c.answer.price, want)} from ${c.miner}`).join(', ')}.` : ''), prices.flatMap(src));
+        add('price_agreement', 'pass', `Two independent Providers agree within ${ok[2].toFixed(1)} %: ${fmt(vals[ok[0]], want)} and ${fmt(vals[ok[1]], want)}.` + (outliers.length ? ` Ignored outlier: ${outliers.map(c => `${Number(c.answer.price).toFixed(2)} ${c.answer.currency || '?'} from ${c.miner}`).join(', ')}.` : ''), prices.flatMap(src));
       } else {
-        add('price_agreement', 'wait', `Providers disagree: ${vals.map(v => fmt(v, want)).join(' vs ')} (no two within ${RULES.priceAgreementPct} %). Often a different variant or a stale page; a person should look.`, prices.flatMap(src));
+        const named = prices.map(c => `${Number(c.answer.price).toFixed(2)} ${c.answer.currency || '?'}`);
+        add('price_agreement', 'wait', `Providers disagree: ${named.join(' vs ')} (no two in the same currency within ${RULES.priceAgreementPct} %). Often a different variant, a stale page or a mislabelled currency; a person should look.`, prices.flatMap(src));
       }
     } else add('price_agreement', 'wait', `Only one Provider priced it (${fmt(prices[0].answer.price, want)}); a second opinion was not available.`, prices.flatMap(src));
+
+    // Currency is judged on the answers actually used: a third opinion can outvote a Provider that labelled a GBP shop "$".
+    const cur = agreed.map(c => String(c.answer.currency || '').toUpperCase()).filter(Boolean);
+    const curOk = !want || cur.length === 0 || cur.every(c => c === want);
+    if (!curOk) add('currency', 'wait', `Price quoted in ${[...new Set(cur)].join('/')}, budget is in ${want}; not converting silently.`, agreed.flatMap(src));
 
     const dated = agreed.map(c => ({ c, d: parseDate(c.answer.date) })).filter(x => x.d);
     if (dated.length === 0) add('price_fresh', 'wait', 'No Provider stated when the price was observed.', prices.flatMap(src));
@@ -217,6 +231,13 @@ async function opinions(tg, evidence, errors, { intent, first, slots, params, pr
   const second = await next(slots[0]);
   const base = evidence[first];
   if (second && base?.ok && usable(base) && disagree(base, second)) await next(slots[1]);
+}
+
+export function urlVerdictKnown(c) { return !!c?.ok && /^(safe|malicious|suspicious)$/i.test(String(c.answer?.verdict || '')); }
+// Two prices are comparable only in the same currency (an unstated currency is not held against either).
+export function sameCurrency(a, b) {
+  const x = String(a?.answer?.currency || '').toUpperCase(), y = String(b?.answer?.currency || '').toUpperCase();
+  return !x || !y || x === y;
 }
 
 export function stockValue(c) {
