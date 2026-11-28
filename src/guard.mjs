@@ -27,14 +27,15 @@ export async function gather(tg, order, { secondOpinion = true, returns = true }
   };
   // Return policy: asked of a Provider that quotes the store's own published policy (Shelf Truth by default),
   // with the ranked Provider as the fallback when that one cannot answer.
+  // Since the node's schema v3 (2026-11-27 20:17 UTC) this Intent takes exactly one param, `retailer`; any other
+  // param (we used to send `store` and a free-text `question`) is refused with 400 before payment.
   if (returns) tasks.returns = async () => {
-    const question = order.returnQuestion || 'Buying now for home delivery. If it arrives unused and I change my mind, can I return it, within how many days, and what does a return cost?';
     const pinned = order.returnsMiner === null ? null : String(order.returnsMiner || '7310457');
     if (pinned) {
-      const c = await tg.ask(ret, { store: retailer, question }, { miner: pinned, purpose: 'returns' });
+      const c = await tg.ask(ret, { retailer }, { miner: pinned, purpose: 'returns' });
       if (c.ok && (isNum(c.answer?.return_window_days) || c.answer?.returnable === false)) return c;
     }
-    return tg.ask(ret, { retailer, store: retailer, question }, { purpose: 'returns' });
+    return tg.ask(ret, { retailer }, { purpose: 'returns' });
   };
 
   const evidence = {};
