@@ -1,11 +1,11 @@
 {
-  "spentToday": 0.05,
+  "spentToday": 0.09,
   "day": "2026-11-28",
   "last": {
     "decision": "WAIT",
-    "finished_at": "2026-11-28T02:19:07.771Z",
+    "finished_at": "2026-11-28T05:18:37.346Z",
     "summary": "Not yet: Only one Provider priced it (GBP 168.00); a second opinion was not available.",
-    "spent_usd": 0.05
+    "spent_usd": 0.04
   },
   "history": [
     {
@@ -79,6 +79,12 @@
       "finished_at": "2026-11-28T02:19:07.771Z",
       "summary": "Not yet: Only one Provider priced it (GBP 168.00); a second opinion was not available.",
       "spent_usd": 0.05
+    },
+    {
+      "decision": "WAIT",
+      "finished_at": "2026-11-28T05:18:37.346Z",
+      "summary": "Not yet: Only one Provider priced it (GBP 168.00); a second opinion was not available.",
+      "spent_usd": 0.04
     }
   ]
 }
